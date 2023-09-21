@@ -2,7 +2,9 @@ import LoginForm from "@/components/LoginForm";
 
 export default function Home() {
   return (
-    
-    <LoginForm/>
+    <section className="flex w-screen h-screen items-center justify-center">
+      
+      <LoginForm/>
+    </section>
   )
 }
