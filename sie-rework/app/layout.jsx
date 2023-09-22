@@ -1,22 +1,22 @@
-import Header from '@/components/Header'
-import './globals.css'
-import { Inter } from 'next/font/google'
+import Header from "@/components/Header";
+import "./globals.css";
+import { Montserrat } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'SIE Rework',
-  description: 'Rework de la pagina del SIE del ITE',
-}
+  title: "SIE Rework",
+  description: "Rework de la pagina del SIE del ITE",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header/>
+      <body className={montserrat.className}>
+        <Header />
 
-        <main className='w-screen h-screen'>{children}</main>
-        </body>
+        <main>{children}</main>
+      </body>
     </html>
-  )
+  );
 }

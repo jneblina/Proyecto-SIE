@@ -1,16 +1,40 @@
-export default function LoginForm(){
-    return(
-        <section className="flex flex-col border w-[80%] h-fit p-2 rounded-md items-center justify-center">
-            <h2>Login</h2>
-            <form action="submit" className="flex flex-col items-center space-y-2">
-                <div className="space-y-2 block relative">
-                <label for="email" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Email</label>
-                <input type="text" id="email" className='form-input'></input>
-                <label for="password" className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2">Contraseña</label>
-                <input type="text" id="password" className='form-input'></input>
-                </div>
-                <button type="submit" className="bg-[#7747ff] w-max mx-auto px-6 py-2 rounded text-white text-sm font-normal">Submit</button>
-            </form>
-        </section>
-    )
+export default function LoginForm() {
+  return (
+    <section className="flex flex-col space-y-4 bg-white shadow-md w-[96%] h-fit py-8 px-8 rounded-lg">
+      <h2 className="font-bold text-4xl text-center my-4">Iniciar sesión</h2>
+      <form
+        action="submit"
+        className="flex flex-col items-center space-y-2 w-full"
+      >
+        <div className="space-y-2 block relative w-full">
+          <label
+            htmlFor="email"
+            className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >
+            Número de control
+          </label>
+          <input type="text" id="email" className="form-input"></input>
+          <label
+            htmlFor="password"
+            className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
+          >
+            Clave de acceso
+          </label>
+          <input type="password" id="password" className="form-input"></input>
+        </div>
+        <button
+          type="submit"
+          className="bg-[#8D0D30] w-full mx-auto px-6 py-2 rounded text-white text-sm font-semibold"
+        >
+          Ingresar
+        </button>
+      </form>
+      <a
+        href=""
+        className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"
+      >
+        Recuperar clave de acceso
+      </a>
+    </section>
+  );
 }
