@@ -14,7 +14,7 @@ export default function LoginForm() {
 
     }
   return (
-    <section className="flex flex-col space-y-4 bg-white shadow-md w-[96%] h-fit py-8 px-8 rounded-lg">
+    <section className="flex flex-col space-y-20 bg-white shadow-md w-[90%] h-fit py-8 px-8 rounded-lg md:max-w-3xl">
       <h2 className="font-bold text-4xl text-center my-4">Iniciar sesión</h2>
       <form
         action="submit"
