@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import { useRouter } from "next/navigation"
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+  const router = useRouter();
 
-    const router = useRouter()
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push("/sie");
+  };
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        router.push('/sie')
-
-    }
   return (
-    <section className="flex flex-col space-y-20 bg-white shadow-md w-[90%] h-fit py-8 px-8 rounded-lg md:max-w-3xl">
-      <h2 className="font-bold text-4xl text-center my-4">Iniciar sesión</h2>
+    <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
+      <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
+        Iniciar sesión
+      </h2>
       <form
         action="submit"
         onSubmit={handleSubmit}
-        className="flex flex-col items-center space-y-2 w-full"
+        className="flex flex-col items-start space-y-2 w-full"
       >
         <div className="space-y-2 block relative w-full">
           <label
@@ -44,12 +44,12 @@ export default function LoginForm() {
           Ingresar
         </button>
       </form>
-      <a
+      <Link
         href=""
         className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"
       >
         Recuperar clave de acceso
-      </a>
+      </Link>
     </section>
   );
 }
