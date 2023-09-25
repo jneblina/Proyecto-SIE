@@ -1,14 +1,25 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
+import { useState } from "react";
 
 export default function LoginForm() {
-  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  //Usuario de prueba
+  //email: pruebatest@gmail.com
+  //contraseña: secretito0
   const handleSubmit = (e) => {
     e.preventDefault();
-    router.push("/sie");
+    signIn("credentials", {
+      email,
+      password,
+      redirect: true,
+      callbackUrl: "/sie",
+    });
   };
 
   return (
@@ -28,14 +39,28 @@ export default function LoginForm() {
           >
             Número de control
           </label>
-          <input type="text" id="email" className="form-input"></input>
+          <input
+            required
+            type="text"
+            id="email"
+            className="form-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
           <label
             htmlFor="password"
             className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
           >
             Clave de acceso
           </label>
-          <input type="password" id="password" className="form-input"></input>
+          <input
+            required
+            type="password"
+            id="password"
+            className="form-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
         </div>
         <button
           type="submit"
