@@ -19,5 +19,20 @@ module.exports = {
     },
   },
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [nextui({
+    themes: {
+      gob: {
+        layout: {},
+        colors:{
+          white: '#FFFFFF',
+          black: "#000000",
+          background: '#ffffff',
+          primary: '#052E16',
+          secondary: '#8D0D30'
+
+        }
+
+      }
+    }
+  })],
 }
