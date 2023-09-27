@@ -68,7 +68,15 @@ export default function LoginForm() {
         >
           Ingresar
         </button>
+       
       </form>
+      <button
+          type="button"
+          className="bg-[#181818] w-full mx-auto px-6 py-2 rounded text-white text-sm font-semibold"
+          onClick={()=> signIn('github',{ redirect: true, callbackUrl: '/sie'})}
+        >
+          Ingresar con GitHub
+        </button>
       <Link
         href=""
         className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"
