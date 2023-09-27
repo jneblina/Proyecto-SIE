@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -16,8 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         {/* <Header /> */}
-
-        <Providers>{children}</Providers>
+          <Providers>{children}</Providers>
         {/* <Footer /> */}
       </body>
     </html>
