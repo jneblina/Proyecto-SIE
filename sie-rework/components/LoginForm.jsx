@@ -78,15 +78,19 @@ export default function LoginForm() {
         >
           Ingresar
         </button>
-       
       </form>
       <button
-          type="button"
-          className="bg-[#181818] w-full mx-auto px-6 py-2 rounded text-white text-sm font-semibold"
-          onClick={()=> signIn('github',{ redirect: true, callbackUrl: '/sie'})}
-        >
-          Ingresar con GitHub
-        </button>
+        onClick={handleGitHubSignIn}
+        className="bg-gray-800 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
+      >
+        Iniciar sesión con GitHub
+      </button>
+      <button
+        onClick={handleGoogleSignIn}
+        className="bg-gray-500 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
+      >
+        Iniciar sesión con Google
+      </button>
       <Link
         href=""
         className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"
