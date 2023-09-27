@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-green-950 w-auto h-[20%] p-4 text-white text-left">
+        <footer className="bg-primary w-auto h-[20%] p-4 text-white text-left">
             <div className="flex flex-col sm:flex-row items-start justify-around">
                 <div className="mb-4 sm:mb-0">
                     <img src="/assets/gobierno.svg" alt="" className="w-32 sm:w-40" />

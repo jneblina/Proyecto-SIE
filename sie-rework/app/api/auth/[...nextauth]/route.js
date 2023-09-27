@@ -3,7 +3,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
+<<<<<<< HEAD
 import GoogleProvider from "next-auth/providers/google";
+=======
+
+
+
+>>>>>>> 1251720727724f6c6289a9949bb5d0d70398c217
 
 const handler = NextAuth({
   providers: [
@@ -24,6 +30,7 @@ const handler = NextAuth({
       },
     }),
     GitHubProvider({
+<<<<<<< HEAD
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
@@ -31,6 +38,11 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
+=======
+      clientId: process.env.GITHUB_ID ?? '',
+      clientSecret: process.env.GITHUB_SECRET ?? ''
+    })
+>>>>>>> 1251720727724f6c6289a9949bb5d0d70398c217
   ],
 });
 
