@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -15,9 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} gob`}>
+      <body className={`${montserrat.className} ite`}>
         {/* <Header /> */}
-          <Providers>{children}</Providers>
+        <Providers>{children}</Providers>
         {/* <Footer /> */}
       </body>
     </html>

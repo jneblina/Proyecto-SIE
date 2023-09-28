@@ -4,6 +4,7 @@ import React from "react";
 import Nav from "./Nav";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import HeaderNav from "./HeaderNav";
 
 const SieLayout = ({ children }) => {
   const { status } = useSession({
@@ -22,8 +23,8 @@ const SieLayout = ({ children }) => {
   }
 
   return (
-    <div className="flex flex-row">
-      <Nav />
+    <div className="flex flex-col">
+      <HeaderNav />
       <main className="flex-grow">{children}</main>
     </div>
   );
