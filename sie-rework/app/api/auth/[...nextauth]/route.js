@@ -35,7 +35,7 @@ const handler = NextAuth({
     }),
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
     }),
     RedditProvider({
       clientId: process.env.REDDIT_CLIENT_ID,
@@ -43,6 +43,11 @@ const handler = NextAuth({
     }),
     
   ],
+  session: {
+    //La sesión caduca en 24 horas
+    maxAge: 24 * 60 * 60,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export { handler as GET, handler as POST };
