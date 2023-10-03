@@ -9,13 +9,19 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Button,
+  Avatar,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownTrigger,
 } from "@nextui-org/react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
 const HeaderNav = () => {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   const routes = [
     {
@@ -78,7 +84,69 @@ const HeaderNav = () => {
 
   return (
     <header>
+      <Navbar maxWidth="2xl" height={"3rem"} className="bg-zinc-900">
+        <NavbarContent>
+          <NavbarBrand>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              color="white"
+              class="icon icon-tabler icon-tabler-brand-electronic-arts"
+              width="38"
+              height="38"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+              <path d="M17.5 15l-3 -6l-3 6h-5l1.5 -3"></path>
+              <path d="M17 14h-2"></path>
+              <path d="M6.5 12h3.5"></path>
+              <path d="M8 9h3"></path>
+            </svg>
+            <p className="font-bold text-white ml-1">
+              SISTEMA DE INTEGRACIÓN ESCOLAR
+            </p>
+          </NavbarBrand>
+        </NavbarContent>
+        <NavbarContent as="div" justify="end">
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <div className="flex flex-row items-center space-x-3 hover:cursor-pointer">
+                <Avatar
+                  isBordered
+                  as={"button"}
+                  className="transition-transform"
+                  color="secondary"
+                  name="Albatro Jose"
+                  size="sm"
+                />
+                <p className="font-bold text-white ml-1 ">Usuario</p>
+              </div>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-semibold">Iniciaste sesión como:</p>
+                <p className="font-semibold">{session?.user.email}</p>
+              </DropdownItem>
+
+              <DropdownItem
+                onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
+                key="logout"
+                color="danger"
+              >
+                Cerrar sesión
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarContent>
+      </Navbar>
       <Navbar
+        maxWidth="2xl"
+        height={"3rem"}
         classNames={{
           item: [
             "flex",
@@ -87,7 +155,7 @@ const HeaderNav = () => {
 
             "items-center",
             "bg-primary",
-            "items-center",
+
             "text-white",
 
             "data-[active=true]:after:content-['']",
@@ -102,7 +170,7 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarContent>
+        <NavbarContent className="lg:hidden">
           <NavbarMenuToggle aria-label="Abrir menu" />
           <NavbarBrand>
             <p className="font-bold text-inherit">Todo</p>
@@ -110,36 +178,18 @@ const HeaderNav = () => {
         </NavbarContent>
 
         <NavbarContent
-          className="hidden sm:flex gap-4 w-fit mx-4"
+          className="hidden lg:flex gap-4 mx-4 items-center"
           justify="center"
         >
-          <NavbarItem isActive={pathname === "/sie"}>
-            <Link href={"/sie"}>Inicio</Link>
-          </NavbarItem>
-          <NavbarItem isActive={pathname === "/sie/horario"}>
-            <Link href={"/sie/horario"}>Horario</Link>
-          </NavbarItem>
-          <NavbarItem isActive={pathname === "/sie/calificaciones"}>
-            <Link href={"/sie/calificaciones"}>Calificaciones</Link>
-          </NavbarItem>
-          <NavbarItem isActive={pathname === "/sie/kardex"}>
-            <Link href={"/sie/calificaciones"}>Kardex</Link>
-          </NavbarItem>
-          <NavbarItem isActive={pathname === "/sie/reinscripciones"}>
-            <Link href={"/sie/reinscripciones"}>Reinscripciones</Link>
-          </NavbarItem>
-          <NavbarItem isActive={pathname === "/sie/residencias"}>
-            <Link href={"/sie/residencias"}>Residencias</Link>
-          </NavbarItem>
+          {routes.map((item, index) => (
+            <NavbarItem key={index} isActive={pathname === item.route}>
+              <Link className="text-sm" href={item.route}>
+                {item.name}
+              </Link>
+            </NavbarItem>
+          ))}
         </NavbarContent>
-        <NavbarContent className="flex" justify="end">
-          <Button
-            onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
-            className="bg-secondary text-white font-semibold hover:bg-secondary/40"
-          >
-            Cerrar sesión
-          </Button>
-        </NavbarContent>
+
         <NavbarMenu>
           {routes.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>

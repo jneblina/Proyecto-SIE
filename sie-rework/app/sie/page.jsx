@@ -7,9 +7,6 @@ export default function Sie() {
   const { data: session } = useSession();
   return (
     <SieLayout>
-      <div className="h-[5%] text-white font-semibold text-lg p-2 bg-green-950 text-center">
-        Sistema de Integración Escolar (SIE)
-      </div>
       <div className="p-2">
         <h1>{session ? `Hola ${session.user.email}!` : "Hola albatro!"}</h1>
         <button
