@@ -37,6 +37,11 @@ export default function LoginForm() {
     signIn("discord", { callbackUrl: "/sie"});
   }
 
+  const handleRedditSignIn = () => {
+    // Usar signIn con Reddit
+    signIn("reddit", { callbackUrl: "/sie"});
+  }
+
   return (
     <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
       <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
@@ -101,6 +106,12 @@ export default function LoginForm() {
         className="bg-blue-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
       >
         Iniciar sesión con Discord
+      </button>
+      <button
+        onClick={handleRedditSignIn}
+        className="bg-orange-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
+      >
+        Iniciar sesión con Reddit
       </button>
       <Link
         href=""

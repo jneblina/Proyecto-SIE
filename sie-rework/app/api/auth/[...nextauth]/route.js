@@ -5,10 +5,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from "next-auth/providers/discord";
+import RedditProvider from "next-auth/providers/reddit";
 
 const handler = NextAuth({
   providers: [
-    CredentialsProvider({
+     CredentialsProvider({
       async authorize(credentials) {
         return await signInWithEmailAndPassword(
           auth,
@@ -23,7 +24,7 @@ const handler = NextAuth({
           })
           .catch((error) => console.log(error));
       },
-    }),
+    }), 
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
@@ -36,6 +37,11 @@ const handler = NextAuth({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
     }),
+    RedditProvider({
+      clientId: process.env.REDDIT_CLIENT_ID,
+      clientSecret: process.env.REDDIT_CLIENT_SECRET
+    }),
+    
   ],
   session: {
     //La sesión caduca en 24 horas
