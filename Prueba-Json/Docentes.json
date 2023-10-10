@@ -1,0 +1,17 @@
+{
+    "Nombre": "Juan Pérez",
+    "Curp": "polo090607HBCZH6",
+    "Calle": "Calle Principal",
+    "Colonia": "Centro",
+    "CP": "12345",
+    "Numero Calle": "123",
+    "Telefono": "555-123-4567",
+    "Correo Personal": "juan.perez@example.com",
+    "Correo Institucional": "jperez@institucion.edu.mx",
+    "Titulo": "Licenciado en Educación",
+    "Plazas": ["Mañana", "Tarde"],
+    "Ingreso": "01/01/2010",
+    "Puesto": "Profesor",
+    "Departamento": "Departamento de Educación"
+  }
+  
