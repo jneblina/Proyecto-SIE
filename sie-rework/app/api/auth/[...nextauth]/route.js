@@ -9,7 +9,7 @@ import RedditProvider from "next-auth/providers/reddit";
 
 const handler = NextAuth({
   providers: [
-     CredentialsProvider({
+    CredentialsProvider({
       async authorize(credentials) {
         return await signInWithEmailAndPassword(
           auth,
@@ -24,7 +24,7 @@ const handler = NextAuth({
           })
           .catch((error) => console.log(error));
       },
-    }), 
+    }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
@@ -39,13 +39,12 @@ const handler = NextAuth({
     }),
     RedditProvider({
       clientId: process.env.REDDIT_CLIENT_ID,
-      clientSecret: process.env.REDDIT_CLIENT_SECRET
+      clientSecret: process.env.REDDIT_CLIENT_SECRET,
     }),
-    
   ],
   session: {
-    //La sesión caduca en 24 horas
-    maxAge: 24 * 60 * 60,
+    //La sesión caduca en 15 minutos
+    maxAge: 60 * 15,
   },
   secret: process.env.NEXTAUTH_SECRET,
 });
