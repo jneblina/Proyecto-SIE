@@ -2,6 +2,8 @@
 
 Autores: Neblina Jan, Corona Hugo, Flores Adrian, Muro Alan, Vázquez Antonio, Rulfo Diego, Calderon Jorge, Rodriguez Aleida
 
+Deploy en Vercel: https://proyecto-sie.vercel.app/
+
 ## Contenido
 - Metas
 - No-metas
