@@ -87,9 +87,10 @@ const HeaderNav = () => {
       <Navbar maxWidth="2xl" height={"3rem"} className="bg-zinc-900">
         <NavbarContent>
           <NavbarBrand>
-            <p className="font-bold text-white ml-1">
+            <p className="font-bold text-white ml-1 hidden sm:flex">
               SISTEMA DE INTEGRACIÓN ESCOLAR
             </p>
+            <p className="font-bold text-white ml-1 sm:hidden">SIE</p>
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent as="div" justify="end">
@@ -150,7 +151,7 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarContent className="lg:hidden">
+        <NavbarContent className="2xl:hidden">
           <NavbarMenuToggle aria-label="Abrir menu" />
           <NavbarBrand>
             <p className="font-bold text-inherit">Todo</p>
@@ -158,7 +159,7 @@ const HeaderNav = () => {
         </NavbarContent>
 
         <NavbarContent
-          className="hidden lg:flex gap-4 mx-4 items-center"
+          className="hidden 2xl:flex gap-4 mx-4 items-center"
           justify="center"
         >
           {routes.map((item, index) => (
@@ -170,7 +171,7 @@ const HeaderNav = () => {
           ))}
         </NavbarContent>
 
-        <NavbarMenu>
+        <NavbarMenu className="mt-12">
           {routes.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link className="w-full" href={item.route} size="lg">
