@@ -47,7 +47,7 @@ const SieLayout = ({ children }) => {
   return (
     <div className="flex flex-col">
       <HeaderNav />
-      <pre>{JSON.stringify(session, null, 2)}</pre>
+      
       <main className="flex-grow">{children}</main>
     </div>
   );
