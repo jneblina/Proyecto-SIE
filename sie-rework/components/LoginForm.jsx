@@ -12,8 +12,10 @@ export default function LoginForm() {
   //Usuario de prueba
   //email: pruebatest@gmail.com
   //contraseña: secretito0
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     signIn("credentials", {
       email,
       password,
@@ -34,13 +36,13 @@ export default function LoginForm() {
 
   const handleDiscordSignIn = () => {
     // Usar signIn con Discord
-    signIn("discord", { callbackUrl: "/sie"});
-  }
+    signIn("discord", { callbackUrl: "/sie" });
+  };
 
   const handleRedditSignIn = () => {
     // Usar signIn con Reddit
-    signIn("reddit", { callbackUrl: "/sie"});
-  }
+    signIn("reddit", { callbackUrl: "/sie" });
+  };
 
   return (
     <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">

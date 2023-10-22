@@ -36,49 +36,83 @@ export default function Sie() {
 
   return (
     <SieLayout>
-      <section className="mx-auto mt-8 max-w-7xl">
-        <div className="grid grid-rows-2 gap-4 justify-center">
-          <div className="flex flex-col items-center justify-center xl:flex-row space-y-6  xl:space-y-0 xl:space-x-6 max-w-5xl ">
+      <section className="mx-auto mt-8 max-w-7xl ">
+        <div className="grid grid-rows-2 xl:grid-cols-4 auto-cols-auto gap-2  ">
+          <div className="xl:col-span-1 flex flex-col items-center justify-start xl:flex-row space-y-6  xl:space-y-0 xl:space-x-6 ">
             <Image
-              width={330}
-              height={330}
+              width={300}
+              height={300}
               className="rounded-full border-2 border-blue-700"
               src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
               fallbackSrc="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
               alt="Foto de perfil"
             />
-            <div className="grid lg:grid-rows-3 grid-cols-1 lg:grid-cols-2 gap-2 px-8 py-6 xl:px-12 xl:py-8 w-full font-bold rounded-md h-full bg-[#F0EFEB]">
-              <p>
-                Nombre: <span>{Nombre}</span>
-              </p>
-
-              <p>
-                Modalidad: <span>{Modalidad}</span>
-              </p>
-              <p>
-                Fecha de nacimiento: <span>{FechaDeNacimiento}</span>
-              </p>
-              <p>
-                Situación: <span>{Situacion}</span>
-              </p>
-              <p>
-                Créditos acumulados: <span>{CreditosAcumulados}</span>
-              </p>
-            </div>
           </div>
-          <div className="grid lg:grid-rows-3 grid-cols-1 lg:grid-cols-2 px-8 py-6 xl:px-12 xl:py-8  font-bold rounded-md h-[40%] xl:h-full bg-[#F0EFEB] max-w-5xl ">
-            <p>
-              Carrera: <span>{Carrera}</span>
-            </p>
-            <p>
-              Créditos: <span>{Creditos}</span>
-            </p>
-            <p>
-              Plan de estudios: <span>{PlanDeEstudios}</span>
-            </p>
-            <p>
-              Periodo de ingreso: <span>{PeriodoDeIngreso}</span>
-            </p>
+
+          <div className="xl:col-span-3 flex flex-col space-y-5 ">
+            <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-sm rounded-md h-full bg-white shadow-md">
+              <h2 className="mb-2 text-lg">Datos generales</h2>
+              <table className="w-full h-full text-left">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Nombre</td>
+                    <td className="font-normal">{Nombre}</td>
+                    <td>Modalidad</td>
+                    <td className="font-normal">{Modalidad}</td>
+                  </tr>
+                  <tr>
+                    <td>Fecha de nacimiento</td>
+                    <td className="font-normal">{FechaDeNacimiento}</td>
+                    <td>Situación</td>
+                    <td className="font-normal">{Situacion}</td>
+                  </tr>
+                  <tr>
+                    <td>Creditos acumulados</td>
+                    <td className="font-normal">{CreditosAcumulados}</td>
+                    <td>Carrera</td>
+                    <td className="font-normal">{Carrera}</td>
+                  </tr>
+                  <tr>
+                    <td>Plan de estudios</td>
+                    <td className="font-normal">{PlanDeEstudios}</td>
+                    <td>Periodo de ingreso</td>
+                    <td className="font-normal">{PeriodoDeIngreso}</td>
+                  </tr>
+                  <tr>
+                    <td>Creditos</td>
+                    <td className="font-normal">{Creditos}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            {/* <div className=" px-8 py-6 xl:px-12 xl:py-8  font-bold rounded-md h-[40%] xl:h-[80%] bg-white shadow-md">
+              <table className="w-full h-full text-left">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Creditos</td>
+                    <td className="font-normal">{Creditos}</td>
+                  </tr>
+                  <tr>
+                    <td>Plan de estudios</td>
+                    <td className="font-normal">{PlanDeEstudios}</td>
+                    <td>Periodo de ingreso</td>
+                    <td className="font-normal">{PeriodoDeIngreso}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div> */}
           </div>
         </div>
       </section>
