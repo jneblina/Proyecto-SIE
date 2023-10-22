@@ -17,24 +17,17 @@ import {
 } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 const HeaderNav = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
 
-  const routes = [
-    {
-      route: "/sie",
-      name: "Inicio",
-    },
+  const userRoutes = [
     {
       route: "/sie/datos-generales",
       name: "Perfil",
-    },
-    {
-      route: "/sie/carga-documentos",
-      name: "Documentos",
     },
     {
       route: "/sie/horario",
@@ -49,17 +42,35 @@ const HeaderNav = () => {
       name: "Kardex",
     },
     {
-      route: "/sie/actividades-complementarias",
-      name: "Act. Complementarias",
+      route: "/sie/grupos-actuales",
+      name: "Grupos Actuales",
     },
     {
       route: "/sie/adeudos-a-dptos",
       name: "Adeudos",
     },
     {
-      route: "/sie/grupos-actuales",
-      name: "Grupos Actuales",
+      route: "/sie/residencias",
+      name: "Residencias",
     },
+  ];
+
+  const routes = [
+    {
+      route: "/sie",
+      name: "Inicio",
+    },
+
+    {
+      route: "/sie/carga-documentos",
+      name: "Documentos",
+    },
+
+    {
+      route: "/sie/actividades-complementarias",
+      name: "Act. Complementarias",
+    },
+
     {
       route: "/sie/encuesta-de-carga",
       name: "Encuesta de Carga",
@@ -68,10 +79,7 @@ const HeaderNav = () => {
       route: "/sie/reinscripciones",
       name: "Reinscripciones",
     },
-    {
-      route: "/sie/residencias",
-      name: "Residencias",
-    },
+
     {
       route: "/sie/pago-de-servicios",
       name: "Servicios",
@@ -84,7 +92,7 @@ const HeaderNav = () => {
 
   return (
     <header>
-      <Navbar maxWidth="2xl" height={"3rem"} className="bg-zinc-900">
+      <Navbar maxWidth="2xl" height={"3rem"} className="bg-primary">
         <NavbarContent>
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
@@ -113,6 +121,16 @@ const HeaderNav = () => {
                 <p className="font-semibold">Iniciaste sesión como:</p>
                 <p className="font-semibold">{session?.user.email}</p>
               </DropdownItem>
+
+              {userRoutes.map((item, key) => (
+                <DropdownItem
+                  onClick={() => router.push(item.route)}
+                  key={key}
+                  color="default"
+                >
+                  {item.name}
+                </DropdownItem>
+              ))}
 
               <DropdownItem
                 onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
@@ -151,7 +169,7 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarContent className="2xl:hidden">
+        <NavbarContent className="lg:hidden">
           <NavbarMenuToggle aria-label="Abrir menu" />
           <NavbarBrand>
             <p className="font-bold text-inherit">Todo</p>
@@ -159,7 +177,7 @@ const HeaderNav = () => {
         </NavbarContent>
 
         <NavbarContent
-          className="hidden 2xl:flex gap-4 mx-4 items-center"
+          className="hidden lg:flex gap-4 mx-4 items-center"
           justify="center"
         >
           {routes.map((item, index) => (
@@ -173,6 +191,13 @@ const HeaderNav = () => {
 
         <NavbarMenu className="mt-12">
           {routes.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link className="w-full" href={item.route} size="lg">
+                {item.name}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+          {userRoutes.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link className="w-full" href={item.route} size="lg">
                 {item.name}
