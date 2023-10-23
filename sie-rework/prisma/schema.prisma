@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Estudiante {
+  idEstudiante        Int          @id @default(autoincrement())
+  numeroControl       String
+  nombre              String
+  modalidad           String
+  curp                String
+  fotoPerfil          Bytes
+  telefono            String
+  correoInstitucional String
+  correoPersonal      String
+  periodoIngreso      String
+  periodoActual       String
+  situacion           String
+  escuelaProcedencia  String
+  fechaNacimiento     DateTime
+  ciudad              String
+  direccion           String
+  idCarrera           Int
+  carrera             Carreras     @relation(fields: [idCarrera], references: [idCarreras])
+  documentos          Documentos[]
+}
+
+model Carreras {
+  idCarreras       Int          @id @default(autoincrement())
+  nombre           String
+  creditos         Int
+  planEstudios     String
+  jefeDepartamento String
+  estudiantes      Estudiante[]
+}
+
+model Docente {
+  idDocente           Int    @id @default(autoincrement())
+  nombre              String
+  curp                String
+  direccion           String
+  telefono            String
+  correoPersonal      String
+  correoInstitucional String
+  titulo              String
+  plazas              String
+  puesto              String
+  departamento        String
+}
+
+model Documentos {
+  idDocumentos                   Int        @id @default(autoincrement())
+  actaNacimiento                 Bytes
+  certificadoBachillerato        Bytes
+  contratoEstudiante             Bytes
+  formatoActualizadoCurp         Bytes
+  resolucionRevalidacionEstudios Bytes
+  solicitudInscripcion           Bytes
+  cartaServicioSocial            Bytes
+  tarjetaResidenteTemporal       Bytes
+  idEstudiante                   Int
+  estudiante                     Estudiante @relation(fields: [idEstudiante], references: [idEstudiante])
+}
