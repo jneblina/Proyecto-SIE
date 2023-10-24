@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model carreras {
+  idCarreras       Int          @id @default(autoincrement())
+  planEstudios     String
+  jefeDepartamento String
+  creditos         Int
+  nombre           String
+  estudiante       estudiante[]
+}
+
+model docente {
+  idDocente           Int    @id @default(autoincrement())
+  nombre              String
+  curp                String
+  direccion           String
+  telefono            String
+  correoPersonal      String
+  correoInstitucional String
+  titulo              String
+  plazas              String
+  puesto              String
+  departamento        String
+}
+
+model documentos {
+  idDocumentos                   Int        @id @default(autoincrement())
+  actaNacimiento                 Bytes
+  certificadoBachillerato        Bytes
+  contratoEstudiante             Bytes
+  formatoActualizadoCurp         Bytes
+  resolucionRevalidacionEstudios Bytes
+  solicitudInscripcion           Bytes
+  cartaServicioSocial            Bytes
+  tarjetaResidenteTemporal       Bytes
+  idEstudiante                   Int
+  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], map: "Documentos_idEstudiante_fkey")
+
+  @@index([idEstudiante], map: "Documentos_idEstudiante_fkey")
+}
+
+model estudiante {
+  idEstudiante        Int          @id @default(autoincrement())
+  numeroControl       String
+  nombre              String
+  modalidad           String
+  curp                String
+  fotoPerfil          Bytes
+  telefono            String
+  correoInstitucional String
+  correoPersonal      String
+  periodoIngreso      String
+  periodoActual       String
+  situacion           String
+  escuelaProcedencia  String
+  fechaNacimiento     DateTime
+  ciudad              String
+  direccion           String
+  idCarrera           Int
+  documentos          documentos[]
+  carreras            carreras     @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
+
+  @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
+}
