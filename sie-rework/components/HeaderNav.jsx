@@ -29,14 +29,7 @@ const HeaderNav = () => {
       route: "/sie/datos-generales",
       name: "Perfil",
     },
-    {
-      route: "/sie/horario",
-      name: "Horario",
-    },
-    {
-      route: "/sie/calificaciones",
-      name: "Calificaciones",
-    },
+   
     {
       route: "/sie/kardex",
       name: "Kardex",
@@ -53,13 +46,6 @@ const HeaderNav = () => {
       route: "/sie/residencias",
       name: "Residencias",
     },
-  ];
-
-  const routes = [
-    {
-      route: "/sie",
-      name: "Inicio",
-    },
 
     {
       route: "/sie/carga-documentos",
@@ -70,6 +56,24 @@ const HeaderNav = () => {
       route: "/sie/actividades-complementarias",
       name: "Act. Complementarias",
     },
+  ];
+
+  const routes = [
+    {
+      route: "/sie",
+      name: "Inicio",
+    },
+
+    {
+      route: "/sie/horario",
+      name: "Horario",
+    },
+    {
+      route: "/sie/calificaciones",
+      name: "Calificaciones",
+    },
+
+   
 
     {
       route: "/sie/encuesta-de-carga",
