@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,7 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Estudiante {
+model carreras {
+  idCarreras       Int          @id @default(autoincrement())
+  planEstudios     String
+  jefeDepartamento String
+  creditos         Int
+  nombre           String
+  estudiante       estudiante[]
+}
+
+model docente {
+  idDocente           Int    @id @default(autoincrement())
+  nombre              String
+  curp                String
+  direccion           String
+  telefono            String
+  correoPersonal      String
+  correoInstitucional String
+  titulo              String
+  plazas              String
+  puesto              String
+  departamento        String
+}
+
+model documentos {
+  idDocumentos                   Int        @id @default(autoincrement())
+  actaNacimiento                 Bytes
+  certificadoBachillerato        Bytes
+  contratoEstudiante             Bytes
+  formatoActualizadoCurp         Bytes
+  resolucionRevalidacionEstudios Bytes
+  solicitudInscripcion           Bytes
+  cartaServicioSocial            Bytes
+  tarjetaResidenteTemporal       Bytes
+  idEstudiante                   Int
+  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], map: "Documentos_idEstudiante_fkey")
+
+  @@index([idEstudiante], map: "Documentos_idEstudiante_fkey")
+}
+
+model estudiante {
   idEstudiante        Int          @id @default(autoincrement())
   numeroControl       String
   nombre              String
@@ -28,43 +64,8 @@ model Estudiante {
   ciudad              String
   direccion           String
   idCarrera           Int
-  carrera             Carreras     @relation(fields: [idCarrera], references: [idCarreras])
-  documentos          Documentos[]
-}
+  documentos          documentos[]
+  carreras            carreras     @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
 
-model Carreras {
-  idCarreras       Int          @id @default(autoincrement())
-  nombre           String
-  creditos         Int
-  planEstudios     String
-  jefeDepartamento String
-  estudiantes      Estudiante[]
-}
-
-model Docente {
-  idDocente           Int    @id @default(autoincrement())
-  nombre              String
-  curp                String
-  direccion           String
-  telefono            String
-  correoPersonal      String
-  correoInstitucional String
-  titulo              String
-  plazas              String
-  puesto              String
-  departamento        String
-}
-
-model Documentos {
-  idDocumentos                   Int        @id @default(autoincrement())
-  actaNacimiento                 Bytes
-  certificadoBachillerato        Bytes
-  contratoEstudiante             Bytes
-  formatoActualizadoCurp         Bytes
-  resolucionRevalidacionEstudios Bytes
-  solicitudInscripcion           Bytes
-  cartaServicioSocial            Bytes
-  tarjetaResidenteTemporal       Bytes
-  idEstudiante                   Int
-  estudiante                     Estudiante @relation(fields: [idEstudiante], references: [idEstudiante])
+  @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
 }
