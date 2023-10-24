@@ -47,8 +47,8 @@ const SieLayout = ({ children }) => {
   return (
     <div className="flex flex-col">
       <HeaderNav />
-      
-      <main className="flex-grow">{children}</main>
+
+      <main className="flex-grow min-h-screen bg-[#fefcfb]">{children}</main>
     </div>
   );
 };
