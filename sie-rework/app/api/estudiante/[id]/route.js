@@ -1,53 +1,95 @@
 import { NextResponse } from "next/server";
+import { prisma } from "@/libs/prisma";
 
-export function GET(request, { params }){
-    
-    const estudiante = {
-        "NumeroDeControl": "19760723",
-        "PlanDeEstudios": "ISIC-2010-224 DE 260 CREDITOS",
-        "Tutor": "",
-        "Nombre": "Antonio Vazquez Saucedo",
-        "Modalidad": "Presencial",
-        "ModuloDeEspecialidad": [
-            "Desarrollo de Frontend",
-            "Desarrollo de Backend"
-        ],
-        "Curp": "VASA010114HBCBLNA6",
-        "Carrera": "Ingeniería en sistemas computacionales",
-        "Creditos": 260,
-        "Foto": "base64_encoded_image_data_here",
-        "Telefono": "6461924812",
-        "CorreoInstitucional": "al19760723@ite.edu.mx",
-        "CorreoPersonal": "vazqueztony079@gmail.com",
-        "PeriodoDeIngreso": "AGODIC2019",
-        "PeriodoActual": "AGODIC2023",
-        "Situacion": "Vigente",
-        "CreditosAcumulados": 240,
-        "EscuelaDeProcedencia": "CET-MAR 11",
-        "FechaDeNacimiento": "2001-06-07",
-        "Ciudad": "Ensenada",
-        "Direccion": [
-            {
-                "Calle": "Calle 8 #760",
-                "Colonia": "Territorio Sur",
-                "CP": "22860"
-            }
-        ]
-      }
-      
-    return NextResponse.json(estudiante)
+export async function GET(request, { params: { id } }) {
+  try {
+    const estudiante = await prisma.estudiante.findUnique({ where: { id } });
+    if (!estudiante)
+      return NextResponse.json(
+        { message: "Estudiante no encontrado" },
+        { status: 404 }
+      );
+    return NextResponse.json(estudiante);
+  } catch (error) {
+    if (error instanceof Error)
+      return NextResponse.json(error.message, { status: 500 });
+  }
 }
 
-export function PUT(request, { params }){
-    console.log(params)
-    return NextResponse.json({
-        message: `actualizando estudiante ${params.id}`
-    })
+export async function PUT(request, { params: { id } }) {
+  try {
+    const {
+      numeroControl,
+      nombre,
+      modalidad,
+      curp,
+      fotoPerfil,
+      telefono,
+      correoInstitucional,
+      correoPersonal,
+      periodoIngreso,
+      periodoActual,
+      situacion,
+      escuelaProcedencia,
+      fechaNacimiento,
+      ciudad,
+      direccion,
+      idCarrera,
+      documentos,
+      carreras,
+    } = await request.json();
+
+    const estudiante = await prisma.estudiante.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        numeroControl,
+        nombre,
+        modalidad,
+        curp,
+        fotoPerfil,
+        telefono,
+        correoInstitucional,
+        correoPersonal,
+        periodoIngreso,
+        periodoActual,
+        situacion,
+        escuelaProcedencia,
+        fechaNacimiento,
+        ciudad,
+        direccion,
+        idCarrera,
+        documentos,
+        carreras,
+      },
+    });
+
+    if (estudiante == null) {
+      return NextResponse.json({ message: `El alumno ${id} no existe` });
+    }
+  } catch (error) {
+    if (error instanceof Error)
+      return NextResponse.json(error.message, { status: 500 });
+  }
 }
 
-export function DELETE(request, {params}){
-    console.log(params)
-    return NextResponse.json({
-        message: `eliminando estudiante ${params.id}`
-    })
+export async function DELETE(request, { params: { id } }) {
+  try {
+    const estudiante = await prisma.estudiante.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    if (estudiante == null) {
+      return NextResponse.json(
+        { message: `El alumno ${id} no existe` },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json({ message: `El alumno ${id} ha sido eliminado` });
+  } catch (error) {
+    if (error instanceof Error)
+      return NextResponse.json(error.message, { status: 500 });
+  }
 }
