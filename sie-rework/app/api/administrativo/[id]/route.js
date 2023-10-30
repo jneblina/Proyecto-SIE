@@ -23,3 +23,4 @@ export function DELETE(request, {params}){
         message: `eliminando administrativo ${params.id}`
     })
 }
+

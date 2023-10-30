@@ -3,7 +3,7 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const estudiante = await prisma.estudiante.findUnique({ where: { id } });
+    const estudiante = await prisma.estudiante.findFirst({ where: { idEstudiante: Number(id) } });
     if (!estudiante)
       return NextResponse.json(
         { message: "Estudiante no encontrado" },
@@ -41,7 +41,7 @@ export async function PUT(request, { params: { id } }) {
 
     const estudiante = await prisma.estudiante.update({
       where: {
-        id: Number(id),
+        idEstudiante: Number(id),
       },
       data: {
         numeroControl,
@@ -78,7 +78,7 @@ export async function DELETE(request, { params: { id } }) {
   try {
     const estudiante = await prisma.estudiante.delete({
       where: {
-        id: Number(id),
+        idEstudiante: Number(id),
       },
     });
     if (estudiante == null) {
