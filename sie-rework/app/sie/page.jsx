@@ -29,15 +29,23 @@ export default function Sie() {
     situacion,
     idCarrera,
     periodoIngreso,
+    curp,
+    telefono,
+    correoInstitucional,
+    correoPersonal,
+    periodoActual,
+    escuelaProcedencia,
+    ciudad,
+    direccion,
   } = estudiante;
 
-  const birthdate = new Date(fechaNacimiento.slice(0, -1));
+  const birthdate = new Date(fechaNacimiento?.slice(0, -1));
 
   return (
     <SieLayout>
-      <section className="mx-auto mt-8 max-w-7xl ">
-        <div className="grid grid-rows-2 xl:grid-cols-4 auto-cols-auto gap-2  ">
-          <div className="xl:col-span-1 flex flex-col items-center justify-start xl:flex-row space-y-6  xl:space-y-0 xl:space-x-6 ">
+      <section className="mx-auto mt-8 max-w-7xl h-full ">
+        <div className="grid grid-rows-2 xl:grid-cols-4  gap-2 h-full">
+          <div className="xl:col-span-1 flex flex-col items-center justify-center xl:justify-start  space-y-6  xl:space-y-2 xl:space-x-6 w-full">
             <Image
               width={300}
               height={300}
@@ -48,8 +56,8 @@ export default function Sie() {
             />
           </div>
 
-          <div className="xl:col-span-3 flex flex-col space-y-5 ">
-            <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-sm rounded-md h-full bg-white shadow-md">
+          <div className="xl:col-span-3 flex flex-col space-y-5 h-full ">
+            <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-base rounded-md h-full bg-white shadow-md">
               <h2 className="mb-2 text-lg">Datos generales</h2>
               <table className="w-full h-full text-left">
                 <thead>
@@ -79,8 +87,34 @@ export default function Sie() {
                     <td>Periodo de ingreso</td>
                     <td className="font-normal">{periodoIngreso}</td>
 
+                    <td>Periodo actual</td>
+                    <td className="font-normal">{periodoActual}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Correo institucional</td>
+                    <td className="font-normal">{correoInstitucional}</td>
+                    <td>Correo personal</td>
+                    <td className="font-normal">{correoPersonal}</td>
+                  </tr>
+
+                  <tr>
                     <td>idCarrera</td>
                     <td className="font-normal">{idCarrera}</td>
+                    <td>Escuela de procedencia</td>
+                    <td className="font-normal">{escuelaProcedencia}</td>
+                  </tr>
+
+                  <tr>
+                    <td>CURP</td>
+                    <td className="font-normal">{curp}</td>
+                    <td>Telefono</td>
+                    <td className="font-normal">{telefono}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Direccion</td>
+                    <td className="font-normal">{direccion}</td>
                   </tr>
                 </tbody>
               </table>

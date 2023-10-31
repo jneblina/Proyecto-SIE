@@ -19,85 +19,108 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 
+const userRoutes = [
+  {
+    route: "/sie/datos-generales",
+    name: "Perfil",
+  },
+
+  {
+    route: "/sie/kardex",
+    name: "Kardex",
+  },
+  {
+    route: "/sie/grupos-actuales",
+    name: "Grupos Actuales",
+  },
+  {
+    route: "/sie/adeudos-a-dptos",
+    name: "Adeudos",
+  },
+  {
+    route: "/sie/residencias",
+    name: "Residencias",
+  },
+
+  {
+    route: "/sie/carga-documentos",
+    name: "Documentos",
+  },
+
+  {
+    route: "/sie/actividades-complementarias",
+    name: "Act. Complementarias",
+  },
+];
+
+const routes = [
+  {
+    route: "/sie",
+    name: "Inicio",
+  },
+
+  {
+    route: "/sie/horario",
+    name: "Horario",
+  },
+  {
+    route: "/sie/calificaciones",
+    name: "Calificaciones",
+  },
+
+  {
+    route: "/sie/encuesta-de-carga",
+    name: "Encuesta de Carga",
+  },
+  {
+    route: "/sie/reinscripciones",
+    name: "Reinscripciones",
+  },
+
+  {
+    route: "/sie/pago-de-servicios",
+    name: "Servicios",
+  },
+  {
+    route: "/sie/evaluacion-docente",
+    name: "Evaluación Docente",
+  },
+];
+
+const MenuNavBar = () => {
+  return (
+    <NavbarMenu className="mt-12">
+      {routes.map((item, index) => (
+        <NavbarMenuItem key={`${item}-${index}`}>
+          <Link className="w-full" href={item.route} size="lg">
+            {item.name}
+          </Link>
+        </NavbarMenuItem>
+      ))}
+      {userRoutes.map((item, index) => (
+        <NavbarMenuItem key={`${item}-${index}`}>
+          <Link className="w-full" href={item.route} size="lg">
+            {item.name}
+          </Link>
+        </NavbarMenuItem>
+      ))}
+    </NavbarMenu>
+  );
+};
+
 const HeaderNav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
 
-  const userRoutes = [
-    {
-      route: "/sie/datos-generales",
-      name: "Perfil",
-    },
-   
-    {
-      route: "/sie/kardex",
-      name: "Kardex",
-    },
-    {
-      route: "/sie/grupos-actuales",
-      name: "Grupos Actuales",
-    },
-    {
-      route: "/sie/adeudos-a-dptos",
-      name: "Adeudos",
-    },
-    {
-      route: "/sie/residencias",
-      name: "Residencias",
-    },
-
-    {
-      route: "/sie/carga-documentos",
-      name: "Documentos",
-    },
-
-    {
-      route: "/sie/actividades-complementarias",
-      name: "Act. Complementarias",
-    },
-  ];
-
-  const routes = [
-    {
-      route: "/sie",
-      name: "Inicio",
-    },
-
-    {
-      route: "/sie/horario",
-      name: "Horario",
-    },
-    {
-      route: "/sie/calificaciones",
-      name: "Calificaciones",
-    },
-
-   
-
-    {
-      route: "/sie/encuesta-de-carga",
-      name: "Encuesta de Carga",
-    },
-    {
-      route: "/sie/reinscripciones",
-      name: "Reinscripciones",
-    },
-
-    {
-      route: "/sie/pago-de-servicios",
-      name: "Servicios",
-    },
-    {
-      route: "/sie/evaluacion-docente",
-      name: "Evaluación Docente",
-    },
-  ];
-
   return (
     <header>
       <Navbar maxWidth="2xl" height={"3rem"} className="bg-primary">
         <NavbarContent>
+          <NavbarMenuToggle
+            className="text-white hidden lg:flex"
+            aria-label="Abrir menu"
+          />
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
               SISTEMA DE INTEGRACIÓN ESCOLAR
@@ -146,6 +169,8 @@ const HeaderNav = () => {
             </DropdownMenu>
           </Dropdown>
         </NavbarContent>
+
+        <MenuNavBar />
       </Navbar>
       <Navbar
         maxWidth="2xl"
@@ -193,22 +218,7 @@ const HeaderNav = () => {
           ))}
         </NavbarContent>
 
-        <NavbarMenu className="mt-12">
-          {routes.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href={item.route} size="lg">
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-          {userRoutes.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" href={item.route} size="lg">
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
+        <MenuNavBar />
       </Navbar>
     </header>
   );
