@@ -3,7 +3,9 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET() {
   try {
-    const estudiantes = await prisma.estudiante.findMany();
+    const estudiantes = await prisma.estudiante.findMany({
+      
+    });
     return NextResponse.json(estudiantes);
   } catch (error) {
     if (error instanceof Error)
