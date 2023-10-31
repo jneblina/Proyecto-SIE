@@ -23,16 +23,15 @@ export default function Sie() {
   }, []);
 
   const {
-    Nombre,
-    Modalidad,
-    FechaDeNacimiento,
-    Situacion,
-    CreditosAcumulados,
-    Carrera,
-    Creditos,
-    PlanDeEstudios,
-    PeriodoDeIngreso,
+    nombre,
+    modalidad,
+    fechaNacimiento,
+    situacion,
+    idCarrera,
+    periodoIngreso,
   } = estudiante;
+
+  const birthdate = new Date(fechaNacimiento.slice(0, -1));
 
   return (
     <SieLayout>
@@ -62,57 +61,30 @@ export default function Sie() {
                 <tbody>
                   <tr>
                     <td>Nombre</td>
-                    <td className="font-normal">{Nombre}</td>
+                    <td className="font-normal">{nombre}</td>
                     <td>Modalidad</td>
-                    <td className="font-normal">{Modalidad}</td>
+                    <td className="font-normal">{modalidad}</td>
                   </tr>
                   <tr>
                     <td>Fecha de nacimiento</td>
-                    <td className="font-normal">{FechaDeNacimiento}</td>
+                    <td className="font-normal">
+                      {birthdate.getDate().toString().padStart(2, "0")}-
+                      {birthdate.getMonth().toString().padStart(2, "0")}-
+                      {birthdate.getFullYear()}
+                    </td>
                     <td>Situación</td>
-                    <td className="font-normal">{Situacion}</td>
+                    <td className="font-normal">{situacion}</td>
                   </tr>
                   <tr>
-                    <td>Creditos acumulados</td>
-                    <td className="font-normal">{CreditosAcumulados}</td>
-                    <td>Carrera</td>
-                    <td className="font-normal">{Carrera}</td>
-                  </tr>
-                  <tr>
-                    <td>Plan de estudios</td>
-                    <td className="font-normal">{PlanDeEstudios}</td>
                     <td>Periodo de ingreso</td>
-                    <td className="font-normal">{PeriodoDeIngreso}</td>
-                  </tr>
-                  <tr>
-                    <td>Creditos</td>
-                    <td className="font-normal">{Creditos}</td>
+                    <td className="font-normal">{periodoIngreso}</td>
+
+                    <td>idCarrera</td>
+                    <td className="font-normal">{idCarrera}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            {/* <div className=" px-8 py-6 xl:px-12 xl:py-8  font-bold rounded-md h-[40%] xl:h-[80%] bg-white shadow-md">
-              <table className="w-full h-full text-left">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Creditos</td>
-                    <td className="font-normal">{Creditos}</td>
-                  </tr>
-                  <tr>
-                    <td>Plan de estudios</td>
-                    <td className="font-normal">{PlanDeEstudios}</td>
-                    <td>Periodo de ingreso</td>
-                    <td className="font-normal">{PeriodoDeIngreso}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> */}
           </div>
         </div>
       </section>

@@ -3,7 +3,9 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const estudiante = await prisma.estudiante.findUnique({ where: { id } });
+    const estudiante = await prisma.estudiante.findUnique({
+      where: { idEstudiante: Number(id) },
+    });
     if (!estudiante)
       return NextResponse.json(
         { message: "Estudiante no encontrado" },
