@@ -91,28 +91,6 @@ export default function Sie() {
                 </tbody>
               </table>
             </div>
-            {/* <div className=" px-8 py-6 xl:px-12 xl:py-8  font-bold rounded-md h-[40%] xl:h-[80%] bg-white shadow-md">
-              <table className="w-full h-full text-left">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Creditos</td>
-                    <td className="font-normal">{Creditos}</td>
-                  </tr>
-                  <tr>
-                    <td>Plan de estudios</td>
-                    <td className="font-normal">{PlanDeEstudios}</td>
-                    <td>Periodo de ingreso</td>
-                    <td className="font-normal">{PeriodoDeIngreso}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> */}
           </div>
         </div>
       </section>
