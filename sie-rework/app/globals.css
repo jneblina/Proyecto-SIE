@@ -9,3 +9,7 @@
 span {
     @apply font-normal
 }
+
+td {
+    @apply py-2
+}
