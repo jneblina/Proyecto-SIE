@@ -3,8 +3,17 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const estudiante = await prisma.estudiante.findUnique({
+
+    const estudiante = await prisma.estudiante.findFirst({
       where: { idEstudiante: Number(id) },
+      include: {
+        carreras: {
+          select: {
+            nombre: true
+          }
+        },
+      },
+
     });
     if (!estudiante)
       return NextResponse.json(
@@ -43,7 +52,7 @@ export async function PUT(request, { params: { id } }) {
 
     const estudiante = await prisma.estudiante.update({
       where: {
-        id: Number(id),
+        idEstudiante: Number(id),
       },
       data: {
         numeroControl,
@@ -80,7 +89,7 @@ export async function DELETE(request, { params: { id } }) {
   try {
     const estudiante = await prisma.estudiante.delete({
       where: {
-        id: Number(id),
+        idEstudiante: Number(id),
       },
     });
     if (estudiante == null) {
