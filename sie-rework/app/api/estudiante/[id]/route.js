@@ -3,6 +3,7 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
+
     const estudiante = await prisma.estudiante.findFirst({
       where: { idEstudiante: Number(id) },
       include: {
@@ -12,6 +13,7 @@ export async function GET(request, { params: { id } }) {
           }
         },
       },
+
     });
     if (!estudiante)
       return NextResponse.json(
