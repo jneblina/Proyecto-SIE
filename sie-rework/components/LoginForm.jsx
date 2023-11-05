@@ -2,26 +2,33 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   //Usuario de prueba
   //email: pruebatest@gmail.com
   //contraseña: secretito0
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    signIn("credentials", {
+    const res = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      callbackUrl: "/sie",
+      redirect: false,
     });
+
+    if (res.error) {
+      console.error(res.error);
+    } else {
+      router.push("/sie");
+    }
   };
 
   const handleGitHubSignIn = () => {
