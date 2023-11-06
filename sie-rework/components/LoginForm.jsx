@@ -24,26 +24,7 @@ export default function LoginForm() {
     });
   };
 
-  const handleGitHubSignIn = () => {
-    // Usar signIn con GitHub
-    signIn("github", { callbackUrl: "/sie" });
-  };
-
-  const handleGoogleSignIn = () => {
-    // Usar signIn con Google
-    signIn("google", { callbackUrl: "/sie" });
-  };
-
-  const handleDiscordSignIn = () => {
-    // Usar signIn con Discord
-    signIn("discord", { callbackUrl: "/sie" });
-  };
-
-  const handleRedditSignIn = () => {
-    // Usar signIn con Reddit
-    signIn("reddit", { callbackUrl: "/sie" });
-  };
-
+  console.log(email, password);
   return (
     <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
       <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
@@ -62,7 +43,7 @@ export default function LoginForm() {
             Número de control
           </label>
           <input
-            required
+            required={true}
             type="text"
             id="email"
             className="form-input"
@@ -76,7 +57,7 @@ export default function LoginForm() {
             Clave de acceso
           </label>
           <input
-            required
+            required={true}
             type="password"
             id="password"
             className="form-input"
