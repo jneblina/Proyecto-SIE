@@ -18,6 +18,7 @@ import {
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const userRoutes = [
   {
@@ -34,7 +35,7 @@ const userRoutes = [
     name: "Grupos Actuales",
   },
   {
-    route: "/sie/adeudos-a-dptos",
+    route: "/sie/adeudos",
     name: "Adeudos",
   },
   {
@@ -78,7 +79,7 @@ const routes = [
   },
 
   {
-    route: "/sie/pago-de-servicios",
+    route: "/sie/servicios",
     name: "Servicios",
   },
   {
@@ -113,13 +114,21 @@ const HeaderNav = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header>
-      <Navbar maxWidth="2xl" height={"3rem"} className="bg-primary">
+      <Navbar
+        onMenuOpenChange={setIsMenuOpen}
+        maxWidth="2xl"
+        height={"3rem"}
+        className="bg-primary"
+      >
         <NavbarContent>
           <NavbarMenuToggle
             className="text-white hidden lg:flex"
-            aria-label="Abrir menu"
+            aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           />
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
@@ -128,47 +137,52 @@ const HeaderNav = () => {
             <p className="font-bold text-white ml-1 sm:hidden">SIE</p>
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent as="div" justify="end">
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <div className="flex flex-row items-center space-x-3 hover:cursor-pointer">
-                <Avatar
-                  isBordered
-                  as={"button"}
-                  className="transition-transform"
-                  color="secondary"
-                  name="Albatro Jose"
-                  size="sm"
-                />
-                <p className="font-bold text-white ml-1 ">Usuario</p>
-              </div>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Iniciaste sesión como:</p>
-                <p className="font-semibold">{session?.user.email}</p>
-              </DropdownItem>
 
-              {userRoutes.map((item, key) => (
-                <DropdownItem
-                  onClick={() => router.push(item.route)}
-                  key={key}
-                  color="default"
-                >
-                  {item.name}
-                </DropdownItem>
-              ))}
+        <Dropdown placement="bottom-end">
+          <DropdownTrigger>
+            <div className="flex flex-row items-center space-x-3 hover:cursor-pointer">
+              <Avatar
+                isBordered
+                as={"button"}
+                className="transition-transform"
+                color="secondary"
+                name="Albatro Jose"
+                size="sm"
+              />
+              <p className="font-bold text-white ml-1 ">Usuario</p>
+            </div>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Profile Actions" variant="flat">
+            <DropdownItem
+              key="profile"
+              textValue="user-info"
+              className="h-14 gap-2"
+            >
+              <p className="font-semibold">Iniciaste sesión como:</p>
+              <p className="font-semibold">{session?.user.email}</p>
+            </DropdownItem>
 
+            {userRoutes.map((item, key) => (
               <DropdownItem
-                onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
-                key="logout"
-                color="danger"
+                onClick={() => router.push(item.route)}
+                key={key}
+                textValue={item.name}
+                color="default"
               >
-                Cerrar sesión
+                {item.name}
               </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </NavbarContent>
+            ))}
+
+            <DropdownItem
+              onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
+              key="logout"
+              textValue="logout"
+              color="danger"
+            >
+              Cerrar sesión
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
 
         <MenuNavBar />
       </Navbar>
@@ -198,12 +212,10 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarContent className="lg:hidden">
-          <NavbarMenuToggle aria-label="Abrir menu" />
-          <NavbarBrand>
-            <p className="font-bold text-inherit">Todo</p>
-          </NavbarBrand>
-        </NavbarContent>
+        <NavbarMenuToggle className="lg:hidden" aria-label="Abrir menu" />
+        <NavbarBrand className="lg:hidden">
+          <p className="font-bold text-inherit">Todo</p>
+        </NavbarBrand>
 
         <NavbarContent
           className="hidden lg:flex gap-4 mx-4 items-center"

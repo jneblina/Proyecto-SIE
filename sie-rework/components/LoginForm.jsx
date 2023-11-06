@@ -91,30 +91,7 @@ export default function LoginForm() {
           Ingresar
         </button>
       </form>
-      <button
-        onClick={handleGitHubSignIn}
-        className="bg-gray-800 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con GitHub
-      </button>
-      <button
-        onClick={handleGoogleSignIn}
-        className="bg-gray-500 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Google
-      </button>
-      <button
-        onClick={handleDiscordSignIn}
-        className="bg-blue-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Discord
-      </button>
-      <button
-        onClick={handleRedditSignIn}
-        className="bg-orange-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Reddit
-      </button>
+
       <Link
         href=""
         className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"
