@@ -29,6 +29,7 @@ module.exports = {
             background: "#ffffff",
             primary: "#052E16",
             secondary: "#8D0D30",
+            tertiary: "#ffc300",
           },
         },
         ite: {

@@ -2,7 +2,7 @@ import MaintenanceNotice from "@/components/MaintenanceNotice";
 import SieLayout from "@/components/SieLayout";
 import React from "react";
 
-const Horario = () => {
+const page = () => {
   return (
     <SieLayout>
       <MaintenanceNotice />
@@ -10,4 +10,4 @@ const Horario = () => {
   );
 };
 
-export default Horario;
+export default page;
