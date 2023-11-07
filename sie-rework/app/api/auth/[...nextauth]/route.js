@@ -8,6 +8,9 @@ import DiscordProvider from "next-auth/providers/discord";
 import RedditProvider from "next-auth/providers/reddit";
 
 const handler = NextAuth({
+  pages: {
+    signIn: "/",
+  },
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
