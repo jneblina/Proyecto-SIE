@@ -54,7 +54,7 @@ model estudiante {
   curp                String
   fotoPerfil          Bytes
   telefono            String
-  correoInstitucional String       @unique
+  correoInstitucional String
   correoPersonal      String
   periodoIngreso      String
   periodoActual       String
@@ -66,14 +66,6 @@ model estudiante {
   idCarrera           Int
   documentos          documentos[]
   carreras            carreras     @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
-  usuarios            usuarios?
 
   @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
-}
-
-model usuarios {
-  idUsuarios       Int        @id @default(autoincrement())
-  correoUsuarios   String     @unique
-  passwordUsuarios String
-  estudiante       estudiante @relation(fields: [correoUsuarios], references: [correoInstitucional], map: "Usuarios_correoUsuarios_fkey")
 }

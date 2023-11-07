@@ -27,7 +27,7 @@ export default function Sie() {
     modalidad,
     fechaNacimiento,
     situacion,
-    idCarrera,
+    carreras,
     periodoIngreso,
     curp,
     telefono,
@@ -99,8 +99,8 @@ export default function Sie() {
                   </tr>
 
                   <tr>
-                    <td>idCarrera</td>
-                    <td className="font-normal">{idCarrera}</td>
+                    <td>Carrera</td>
+                    <td className="font-normal">{carreras.nombre}</td>
                     <td>Escuela de procedencia</td>
                     <td className="font-normal">{escuelaProcedencia}</td>
                   </tr>
@@ -115,6 +115,8 @@ export default function Sie() {
                   <tr>
                     <td>Direccion</td>
                     <td className="font-normal">{direccion}</td>
+                    <td>Ciudad</td>
+                    <td className="font-normal">{ciudad}</td>
                   </tr>
                 </tbody>
               </table>
