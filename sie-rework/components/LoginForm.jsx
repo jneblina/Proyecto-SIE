@@ -24,26 +24,7 @@ export default function LoginForm() {
     });
   };
 
-  const handleGitHubSignIn = () => {
-    // Usar signIn con GitHub
-    signIn("github", { callbackUrl: "/sie" });
-  };
-
-  const handleGoogleSignIn = () => {
-    // Usar signIn con Google
-    signIn("google", { callbackUrl: "/sie" });
-  };
-
-  const handleDiscordSignIn = () => {
-    // Usar signIn con Discord
-    signIn("discord", { callbackUrl: "/sie" });
-  };
-
-  const handleRedditSignIn = () => {
-    // Usar signIn con Reddit
-    signIn("reddit", { callbackUrl: "/sie" });
-  };
-
+  console.log(email, password);
   return (
     <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
       <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
@@ -62,7 +43,7 @@ export default function LoginForm() {
             Número de control
           </label>
           <input
-            required
+            required={true}
             type="text"
             id="email"
             className="form-input"
@@ -76,7 +57,7 @@ export default function LoginForm() {
             Clave de acceso
           </label>
           <input
-            required
+            required={true}
             type="password"
             id="password"
             className="form-input"
@@ -91,30 +72,7 @@ export default function LoginForm() {
           Ingresar
         </button>
       </form>
-      <button
-        onClick={handleGitHubSignIn}
-        className="bg-gray-800 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con GitHub
-      </button>
-      <button
-        onClick={handleGoogleSignIn}
-        className="bg-gray-500 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Google
-      </button>
-      <button
-        onClick={handleDiscordSignIn}
-        className="bg-blue-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Discord
-      </button>
-      <button
-        onClick={handleRedditSignIn}
-        className="bg-orange-700 text-white w-full mx-auto px-6 py-2 rounded text-sm font-semibold"
-      >
-        Iniciar sesión con Reddit
-      </button>
+
       <Link
         href=""
         className="text-sm text-left text-[#12322B] font-medium hover:text-blue-600"

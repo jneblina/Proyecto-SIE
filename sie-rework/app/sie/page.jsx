@@ -49,7 +49,7 @@ export default function Sie() {
             <Image
               width={300}
               height={300}
-              className="rounded-full border-2 border-blue-700"
+              className="rounded-full border-2 border-secondary"
               src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
               fallbackSrc="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
               alt="Foto de perfil"
