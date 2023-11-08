@@ -100,7 +100,7 @@ export default function Sie() {
 
                   <tr>
                     <td>Carrera</td>
-                    <td className="font-normal">{carreras.nombre}</td>
+                    <td className="font-normal">{carreras?.nombre}</td>
                     <td>Escuela de procedencia</td>
                     <td className="font-normal">{escuelaProcedencia}</td>
                   </tr>
