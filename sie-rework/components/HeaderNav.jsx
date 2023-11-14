@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownTrigger,
-  Link,
 } from "@nextui-org/react";
 
 import {
@@ -23,7 +22,8 @@ import { signOut, useSession } from "next-auth/react";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IconX } from "@tabler/icons-react";
+import { IconMenu, IconMenu2, IconX } from "@tabler/icons-react";
+import Link from "next/link";
 
 const userRoutes = [
   {
@@ -138,24 +138,12 @@ const HeaderNav = () => {
         className="bg-primary"
       >
         <NavbarContent>
-          {/* <NavbarMenuToggle
-            onChange={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white hidden lg:flex"
-            aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
-          /> */}
-
-          <label className="burger" htmlFor="burger">
-            <input
-              type="checkbox"
-              id="burger"
-              checked={isMenuOpen}
-              onChange={() => setIsMenuOpen(!isMenuOpen)}
-            />
-
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
+          <button
+            className="text-gray-400 p-1 hidden lg:flex rounded-md border-gray-400 border transition-colors hover:border-white"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <IconMenu2 size={25} />
+          </button>
 
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
@@ -232,11 +220,12 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarMenuToggle
-          onChange={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden"
-          aria-label="Abrir menu"
-        />
+        <button
+          className="text-gray-400 lg:hidden p-1 rounded-md border-gray-400 border transition-colors hover:border-white"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <IconMenu2 size={25} />
+        </button>
         <NavbarBrand className="lg:hidden">
           <p className="font-bold text-inherit">Todo</p>
         </NavbarBrand>
@@ -247,7 +236,10 @@ const HeaderNav = () => {
         >
           {routes.map((item, index) => (
             <NavbarItem key={index} isActive={pathname === item.route}>
-              <Link className="text-sm text-white" href={item.route}>
+              <Link
+                className="text-sm font-medium text-white transition-colors hover:text-tertiary"
+                href={item.route}
+              >
                 {item.name}
               </Link>
             </NavbarItem>
@@ -264,19 +256,49 @@ const HeaderNav = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <aside
-          className={`absolute flex flex-col w-[320px] bg-primary h-full rounded-xl duration-500 ease-out transition-all ${
+          className={`absolute flex flex-col w-[320px] bg-[#fefcfb] h-full rounded-r-xl  shadow-xl duration-500 ease-out transition-all ${
             !isMenuOpen && "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="w-full p-2 justify-end flex ">
+          <div className="w-full px-4 py-2 justify-between items-center flex ">
+            <h2 className="text-2xl font-semibold">MENÚ</h2>
             <button
-              className="rounded-full transition-colors hover:bg-gray-400/20 p-1"
+              className="rounded-full transition-colors hover:bg-gray-400/40 p-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <IconX className="cursor-pointer" color="white" size={30} />
+              <IconX className="cursor-pointer" size={30} />
             </button>
           </div>
+          <nav className="flex flex-col px-4">
+            <p className="font-semibold text-gray-500 ">SERVICIOS</p>
+            <ul className="px-2">
+              {routes.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex rounded-lg font-medium text-lg transition-colors hover:text-white hover:bg-secondary"
+                >
+                  <Link className="p-2 w-full h-full" href={item.route}>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <p className="font-semibold text-gray-500 mt-4">ALUMNO</p>
+            <ul className="px-2">
+              {userRoutes.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex rounded-lg font-medium text-lg transition-colors hover:text-white hover:bg-secondary"
+                >
+                  <Link className="p-2 w-full h-full" href={item.route}>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </aside>
       </div>
     </header>
