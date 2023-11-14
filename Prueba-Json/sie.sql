@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `sie` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `sie`;
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
 --
 -- Host: localhost    Database: sie
 -- ------------------------------------------------------
--- Server version	8.0.32
+-- Server version	8.0.35-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +25,11 @@ DROP TABLE IF EXISTS `_prisma_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `_prisma_migrations` (
-  `id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `checksum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checksum` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `finished_at` datetime(3) DEFAULT NULL,
-  `migration_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logs` text COLLATE utf8mb4_unicode_ci,
+  `migration_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logs` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `rolled_back_at` datetime(3) DEFAULT NULL,
   `started_at` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `applied_steps_count` int unsigned NOT NULL DEFAULT '0',
@@ -54,10 +56,10 @@ DROP TABLE IF EXISTS `carreras`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carreras` (
   `idCarreras` int NOT NULL AUTO_INCREMENT,
-  `planEstudios` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jefeDepartamento` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `planEstudios` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jefeDepartamento` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `creditos` int NOT NULL,
-  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idCarreras`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,16 +82,16 @@ DROP TABLE IF EXISTS `docente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `docente` (
   `idDocente` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `curp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `direccion` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `telefono` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `correoPersonal` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `correoInstitucional` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `titulo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `plazas` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `puesto` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `departamento` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curp` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefono` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correoPersonal` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correoInstitucional` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plazas` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `puesto` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `departamento` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idDocente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -145,21 +147,21 @@ DROP TABLE IF EXISTS `estudiante`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estudiante` (
   `idEstudiante` int NOT NULL AUTO_INCREMENT,
-  `numeroControl` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `modalidad` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `curp` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numeroControl` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modalidad` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curp` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fotoPerfil` longblob NOT NULL,
-  `telefono` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `correoInstitucional` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `correoPersonal` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `periodoIngreso` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `periodoActual` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `situacion` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `escuelaProcedencia` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefono` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correoInstitucional` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correoPersonal` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `periodoIngreso` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `periodoActual` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `situacion` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `escuelaProcedencia` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fechaNacimiento` datetime(3) NOT NULL,
-  `ciudad` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `direccion` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ciudad` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `idCarrera` int NOT NULL,
   PRIMARY KEY (`idEstudiante`),
   UNIQUE KEY `estudiante_correoInstitucional_key` (`correoInstitucional`),
@@ -178,6 +180,104 @@ LOCK TABLES `estudiante` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `materia`
+--
+
+DROP TABLE IF EXISTS `materia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `materia` (
+  `idMateria` int NOT NULL AUTO_INCREMENT,
+  `materiaPrevia` text,
+  `materiaDependiente` text,
+  `planEstudios` int NOT NULL,
+  `nombre` text NOT NULL,
+  `creditos` int NOT NULL,
+  PRIMARY KEY (`idMateria`),
+  KEY `planEstudios` (`planEstudios`),
+  CONSTRAINT `materia_ibfk_1` FOREIGN KEY (`planEstudios`) REFERENCES `planEstudios` (`idPlan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materia`
+--
+
+LOCK TABLES `materia` WRITE;
+/*!40000 ALTER TABLE `materia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `modalidad`
+--
+
+DROP TABLE IF EXISTS `modalidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `modalidad` (
+  `idModalidad` int NOT NULL AUTO_INCREMENT,
+  `nombreModalidad` varchar(50) NOT NULL,
+  PRIMARY KEY (`idModalidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `modalidad`
+--
+
+LOCK TABLES `modalidad` WRITE;
+/*!40000 ALTER TABLE `modalidad` DISABLE KEYS */;
+/*!40000 ALTER TABLE `modalidad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `planEstudios`
+--
+
+DROP TABLE IF EXISTS `planEstudios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `planEstudios` (
+  `idPlan` int NOT NULL AUTO_INCREMENT,
+  `nombrePlanEstudio` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idPlan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `planEstudios`
+--
+
+LOCK TABLES `planEstudios` WRITE;
+/*!40000 ALTER TABLE `planEstudios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `planEstudios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trabajador`
+--
+
+DROP TABLE IF EXISTS `trabajador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trabajador` (
+  `idTrabajador` int NOT NULL AUTO_INCREMENT,
+  `puesto` varchar(50) NOT NULL,
+  PRIMARY KEY (`idTrabajador`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trabajador`
+--
+
+LOCK TABLES `trabajador` WRITE;
+/*!40000 ALTER TABLE `trabajador` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trabajador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -186,8 +286,8 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
   `idUsuarios` int NOT NULL AUTO_INCREMENT,
-  `correoUsuarios` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `passwordUsuarios` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correoUsuarios` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passwordUsuarios` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idUsuarios`),
   UNIQUE KEY `usuarios_correoUsuarios_key` (`correoUsuarios`),
   CONSTRAINT `Usuarios_correoUsuarios_fkey` FOREIGN KEY (`correoUsuarios`) REFERENCES `estudiante` (`correoInstitucional`) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -202,6 +302,14 @@ LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'sie'
+--
+
+--
+-- Dumping routines for database 'sie'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -212,4 +320,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-02 16:42:24
+-- Dump completed on 2023-11-10 12:24:20
