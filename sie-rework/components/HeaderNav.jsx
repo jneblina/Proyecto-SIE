@@ -22,7 +22,8 @@ import {
 import { signOut, useSession } from "next-auth/react";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { IconX } from "@tabler/icons-react";
 
 const userRoutes = [
   {
@@ -120,6 +121,14 @@ const HeaderNav = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMenuOpen]);
+
   return (
     <header>
       <Navbar
@@ -129,11 +138,25 @@ const HeaderNav = () => {
         className="bg-primary"
       >
         <NavbarContent>
-          <NavbarMenuToggle
+          {/* <NavbarMenuToggle
             onChange={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white hidden lg:flex"
             aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
-          />
+          /> */}
+
+          <label className="burger" htmlFor="burger">
+            <input
+              type="checkbox"
+              id="burger"
+              checked={isMenuOpen}
+              onChange={() => setIsMenuOpen(!isMenuOpen)}
+            />
+
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
               SISTEMA DE INTEGRACIÓN ESCOLAR
@@ -165,16 +188,9 @@ const HeaderNav = () => {
               <p className="font-semibold">Iniciaste sesión como:</p>
               <p className="font-semibold">{session?.user.email}</p>
             </DropdownItem>
-            <DropdownItem
-             
-              key="profile"
-              textValue="logout"
-              color="default"
-            >
-              <Link href='/sie/datos-generales'>Perfil</Link>
+            <DropdownItem key="profile" textValue="logout" color="default">
+              <Link href="/sie/datos-generales">Perfil</Link>
             </DropdownItem>
-
-           
 
             <DropdownItem
               onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
@@ -240,6 +256,29 @@ const HeaderNav = () => {
 
         <MenuNavBar />
       </Navbar>
+
+      <div
+        className={`fixed inset-0 items-start flex justify-start  bg-zinc-950/30 transition-transform z-40 ${
+          !isMenuOpen && "invisible"
+        } `}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <aside
+          className={`absolute flex flex-col w-[320px] bg-primary h-full rounded-xl duration-500 ease-out transition-all ${
+            !isMenuOpen && "-translate-x-full"
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="w-full p-2 justify-end flex ">
+            <button
+              className="rounded-full transition-colors hover:bg-gray-400/20 p-1"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <IconX className="cursor-pointer" color="white" size={30} />
+            </button>
+          </div>
+        </aside>
+      </div>
     </header>
   );
 };
