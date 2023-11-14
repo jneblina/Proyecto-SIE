@@ -1,6 +1,16 @@
 "use client";
 
 import {
+  Button,
+  Avatar,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownTrigger,
+  Link,
+} from "@nextui-org/react";
+
+import {
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -8,15 +18,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Button,
-  Avatar,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  DropdownTrigger,
-} from "@nextui-org/react";
+} from "@nextui-org/navbar";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -92,15 +96,15 @@ const MenuNavBar = () => {
   return (
     <NavbarMenu className="mt-12">
       {routes.map((item, index) => (
-        <NavbarMenuItem key={`${item}-${index}`}>
-          <Link className="w-full" href={item.route} size="lg">
+        <NavbarMenuItem key={index}>
+          <Link className="w-full" href={item.route}>
             {item.name}
           </Link>
         </NavbarMenuItem>
       ))}
       {userRoutes.map((item, index) => (
-        <NavbarMenuItem key={`${item}-${index}`}>
-          <Link className="w-full" href={item.route} size="lg">
+        <NavbarMenuItem key={index}>
+          <Link className="w-full" href={item.route}>
             {item.name}
           </Link>
         </NavbarMenuItem>
@@ -126,9 +130,9 @@ const HeaderNav = () => {
       >
         <NavbarContent>
           <NavbarMenuToggle
+            onChange={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white hidden lg:flex"
             aria-label={isMenuOpen ? "Cerrar menu" : "Abrir menu"}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
           />
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
@@ -186,6 +190,7 @@ const HeaderNav = () => {
         <MenuNavBar />
       </Navbar>
       <Navbar
+        onMenuOpenChange={setIsMenuOpen}
         maxWidth="2xl"
         height={"3rem"}
         classNames={{
@@ -211,7 +216,11 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <NavbarMenuToggle className="lg:hidden" aria-label="Abrir menu" />
+        <NavbarMenuToggle
+          onChange={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden"
+          aria-label="Abrir menu"
+        />
         <NavbarBrand className="lg:hidden">
           <p className="font-bold text-inherit">Todo</p>
         </NavbarBrand>
@@ -222,7 +231,7 @@ const HeaderNav = () => {
         >
           {routes.map((item, index) => (
             <NavbarItem key={index} isActive={pathname === item.route}>
-              <Link className="text-sm" href={item.route}>
+              <Link className="text-sm text-white" href={item.route}>
                 {item.name}
               </Link>
             </NavbarItem>
