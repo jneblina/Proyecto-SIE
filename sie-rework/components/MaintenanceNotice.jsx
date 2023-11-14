@@ -2,7 +2,7 @@ import React from "react";
 
 const MaintenanceNotice = () => {
   return (
-    <section className="flex flex-col items-center justify-center my-20">
+    <section className="flex flex-col items-center justify-center mt-48">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-barrier-block"
@@ -28,8 +28,8 @@ const MaintenanceNotice = () => {
         <path d="M7 7v-2"></path>
       </svg>
 
-      <p className="text-5xl font-bold text-[#adb5bd]">
-        Esta página esta en construcción
+      <p className="text-5xl font-bold text-[#adb5bd] text-center">
+        Esta página está en construcción
       </p>
     </section>
   );

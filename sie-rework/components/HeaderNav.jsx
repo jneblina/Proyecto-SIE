@@ -154,24 +154,23 @@ const HeaderNav = () => {
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem
-              key="profile"
+              key="user-info"
               textValue="user-info"
               className="h-14 gap-2"
             >
               <p className="font-semibold">Iniciaste sesión como:</p>
               <p className="font-semibold">{session?.user.email}</p>
             </DropdownItem>
+            <DropdownItem
+             
+              key="profile"
+              textValue="logout"
+              color="default"
+            >
+              <Link href='/sie/datos-generales'>Perfil</Link>
+            </DropdownItem>
 
-            {userRoutes.map((item, key) => (
-              <DropdownItem
-                onClick={() => router.push(item.route)}
-                key={key}
-                textValue={item.name}
-                color="default"
-              >
-                {item.name}
-              </DropdownItem>
-            ))}
+           
 
             <DropdownItem
               onClick={() => signOut({ redirect: true, callbackUrl: "/" })}

@@ -39,6 +39,12 @@ export default function Sie() {
     direccion,
   } = estudiante;
 
+  
+
+
+
+
+
   const birthdate = new Date(fechaNacimiento?.slice(0, -1));
 
   return (
@@ -50,8 +56,8 @@ export default function Sie() {
               width={300}
               height={300}
               className="rounded-full border-2 border-secondary"
-              src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
-              fallbackSrc="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+              src=""
+              
               alt="Foto de perfil"
             />
           </div>
@@ -100,7 +106,7 @@ export default function Sie() {
 
                   <tr>
                     <td>Carrera</td>
-                    <td className="font-normal">{carreras.nombre}</td>
+                    <td className="font-normal">{carreras?.nombre}</td>
                     <td>Escuela de procedencia</td>
                     <td className="font-normal">{escuelaProcedencia}</td>
                   </tr>
