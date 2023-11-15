@@ -9,11 +9,14 @@ datasource db {
 
 model carreras {
   idCarreras       Int          @id @default(autoincrement())
-  planEstudios     String
+  planEstudios     Int
   jefeDepartamento String
   creditos         Int
   nombre           String
+  planestudios     planestudios @relation(fields: [planEstudios], references: [idPlan], onDelete: NoAction, onUpdate: NoAction, map: "fk_carreras_planestudios")
   estudiante       estudiante[]
+
+  @@index([planEstudios], map: "fk_carreras_planestudios")
 }
 
 model docente {
@@ -47,28 +50,31 @@ model documentos {
 }
 
 model estudiante {
-  idEstudiante        Int          @id @default(autoincrement())
-  numeroControl       String
-  nombre              String
-  modalidad           String
-  curp                String
-  fotoPerfil          Bytes?
-  telefono            String
-  correoInstitucional String       @unique
-  correoPersonal      String
-  periodoIngreso      String
-  periodoActual       String
-  situacion           String
-  escuelaProcedencia  String
-  fechaNacimiento     DateTime
-  ciudad              String
-  direccion           String
-  idCarrera           Int
-  documentos          documentos[]
-  carreras            carreras     @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
-  usuarios            usuarios?
+  idEstudiante                              Int          @unique @default(autoincrement())
+  numeroControl                             String
+  nombre                                    String
+  modalidad                                 Int
+  curp                                      String
+  fotoPerfil                                Bytes
+  telefono                                  String
+  correoInstitucional                       String       @unique
+  correoPersonal                            String
+  periodoIngreso                            String
+  periodoActual                             String
+  situacion                                 String
+  escuelaProcedencia                        String
+  fechaNacimiento                           DateTime
+  ciudad                                    String
+  direccion                                 String
+  idCarrera                                 Int
+  documentos                                documentos[]
+  carreras                                  carreras     @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
+  modalidad_estudiante_modalidadTomodalidad modalidad    @relation("estudiante_modalidadTomodalidad", fields: [modalidad], references: [idModalidad], onDelete: NoAction, onUpdate: NoAction, map: "fk_estudiante_modalidad")
+  usuarios                                  usuarios?
 
+  @@id([idEstudiante, modalidad])
   @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
+  @@index([modalidad], map: "fk_estudiante_modalidad")
 }
 
 model usuarios {
@@ -76,4 +82,34 @@ model usuarios {
   correoUsuarios   String     @unique
   passwordUsuarios String
   estudiante       estudiante @relation(fields: [correoUsuarios], references: [correoInstitucional], map: "Usuarios_correoUsuarios_fkey")
+}
+
+model materia {
+  idMateria          Int          @id @default(autoincrement())
+  materiaPrevia      String?      @db.Text
+  materiaDependiente String?      @db.Text
+  planEstudios       Int
+  nombre             String       @db.Text
+  creditos           Int
+  planestudios       planestudios @relation(fields: [planEstudios], references: [idPlan], onDelete: NoAction, onUpdate: NoAction, map: "materia_ibfk_1")
+
+  @@index([planEstudios], map: "planEstudios")
+}
+
+model modalidad {
+  idModalidad                                Int          @id @default(autoincrement())
+  nombreModalidad                            String       @db.VarChar(50)
+  estudiante_estudiante_modalidadTomodalidad estudiante[] @relation("estudiante_modalidadTomodalidad")
+}
+
+model planestudios {
+  idPlan            Int        @id @default(autoincrement())
+  nombrePlanEstudio String?    @db.VarChar(50)
+  carreras          carreras[]
+  materia           materia[]
+}
+
+model trabajador {
+  idTrabajador Int    @id @default(autoincrement())
+  puesto       String @db.VarChar(50)
 }
