@@ -55,7 +55,7 @@ model estudiante {
   nombre                                                     String
   modalidad                                                  Int
   curp                                                       String
-  fotoPerfil                                                 Bytes
+  fotoPerfil                                                 String
   telefono                                                   String
   correoInstitucional                                        String              @unique
   correoPersonal                                             String
