@@ -56,8 +56,8 @@ export default function Sie() {
             />
           </div>
 
-          <div className="xl:col-span-3 flex flex-col space-y-5 h-full ">
-            <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-base rounded-md h-full bg-white shadow-md">
+          <div className="xl:col-span-3 flex flex-col space-y-5 h-full overflow-auto shadow-md  ">
+            <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-base rounded-md h-full bg-white   min-w-[877px]">
               <h2 className="mb-2 text-lg">Datos generales</h2>
               <table className="w-full h-full text-left">
                 <thead>
