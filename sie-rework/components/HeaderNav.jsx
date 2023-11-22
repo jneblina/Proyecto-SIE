@@ -256,7 +256,7 @@ const HeaderNav = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <aside
-          className={`absolute flex flex-col w-[320px] bg-[#fefcfb] h-full rounded-r-xl  shadow-xl duration-500 ease-out transition-all ${
+          className={`absolute flex flex-col w-[320px] bg-[#fefcfb] h-full rounded-r-xl overflow-auto  shadow-xl duration-500 ease-out transition-all ${
             !isMenuOpen && "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -264,7 +264,7 @@ const HeaderNav = () => {
           <div className="w-full px-4 py-2 justify-between items-center flex ">
             <h2 className="text-2xl font-semibold">MENÚ</h2>
             <button
-              className="rounded-full transition-colors hover:bg-gray-400/40 p-1"
+              className="rounded-full  hover:bg-gray-400/40 p-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <IconX className="cursor-pointer" size={30} />
@@ -276,7 +276,7 @@ const HeaderNav = () => {
               {routes.map((item, index) => (
                 <li
                   key={index}
-                  className="flex rounded-lg font-medium text-lg transition-colors hover:text-white hover:bg-secondary"
+                  className="flex rounded-lg font-medium text-lg  hover:text-white hover:bg-secondary"
                 >
                   <Link className="p-2 w-full h-full" href={item.route}>
                     {item.name}
@@ -290,7 +290,7 @@ const HeaderNav = () => {
               {userRoutes.map((item, index) => (
                 <li
                   key={index}
-                  className="flex rounded-lg font-medium text-lg transition-colors hover:text-white hover:bg-secondary"
+                  className="flex rounded-lg font-medium text-lg  hover:text-white hover:bg-secondary"
                 >
                   <Link className="p-2 w-full h-full" href={item.route}>
                     {item.name}
