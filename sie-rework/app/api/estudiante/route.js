@@ -4,6 +4,17 @@ import { prisma } from "@/libs/prisma";
 export async function GET() {
   try {
     const estudiantes = await prisma.estudiante.findMany({
+      include:{
+        modalidad_estudiante_modalidadTomodalidad : {select: {
+          nombreModalidad: true
+        }},
+        carreras: {
+          select: {
+            nombre: true
+          },
+        
+        },
+      }
       
     });
     return NextResponse.json(estudiantes);

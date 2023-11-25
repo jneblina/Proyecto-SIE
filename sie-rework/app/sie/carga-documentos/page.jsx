@@ -4,6 +4,7 @@ import SieLayout from "@/components/SieLayout";
 import React from "react";
 
 const page = () => {
+
   return (
     <SieLayout>
       <section className="mx-auto mt-8 max-w-7xl h-full ">
