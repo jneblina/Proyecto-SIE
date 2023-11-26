@@ -31,7 +31,6 @@ export default function LoginForm() {
     }
   };
 
-  console.log(email, password);
   return (
     <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
       <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
