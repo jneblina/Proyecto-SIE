@@ -10,7 +10,7 @@ span {
     @apply font-normal
 }
 
-td {
+table.profile td {
     @apply py-2
 }
 
@@ -19,11 +19,11 @@ table.kardex {
 }
 
 table.kardex thead th {
-  @apply text-white font-medium p-2
+  @apply text-white font-medium p-2 border-x-1
 }
 
 table.kardex tr td {
-  @apply border border-gray-500/60 px-2 text-center max-w-[169px]
+  @apply border border-gray-500/60 text-center
 }
 
 .burger {

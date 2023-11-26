@@ -73,11 +73,11 @@ const routes = [
     route: "/sie/calificaciones",
     name: "Calificaciones",
   },
-
   {
-    route: "/sie/kardex",
-    name: "Kardex",
+    route: "/sie/encuesta-de-carga",
+    name: "Encuesta de Carga",
   },
+
   {
     route: "/sie/reinscripciones",
     name: "Reinscripciones",
@@ -138,13 +138,6 @@ const HeaderNav = () => {
         className="bg-primary"
       >
         <NavbarContent>
-          <button
-            className="text-gray-400 p-1 hidden lg:flex rounded-md border-gray-400 border transition-colors hover:border-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <IconMenu2 size={25} />
-          </button>
-
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
               SISTEMA DE INTEGRACIÓN ESCOLAR
@@ -220,22 +213,28 @@ const HeaderNav = () => {
         }}
         className="flex bg-primary text-white justify-center"
       >
-        <button
-          className="text-gray-400 lg:hidden p-1 rounded-md border-gray-400 border transition-colors hover:border-white"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <IconMenu2 size={25} />
-        </button>
-        <NavbarBrand className="lg:hidden">
-          <p className="font-bold text-inherit">Todo</p>
-        </NavbarBrand>
-
-        <NavbarContent
-          className="hidden lg:flex gap-4 mx-4 items-center"
-          justify="center"
-        >
+        <NavbarContent className="gap-4 mx-4 items-center" justify="center">
+          <NavbarItem className="gap-2">
+            <button
+              id="menu"
+              className="text-gray-400  p-1 rounded-md border-gray-400 border transition-colors hover:border-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <IconMenu2 size={25} />
+            </button>
+            <label
+              htmlFor="menu"
+              className="font-bold text-inherit cursor-pointer "
+            >
+              Todo
+            </label>
+          </NavbarItem>
           {routes.map((item, index) => (
-            <NavbarItem key={index} isActive={pathname === item.route}>
+            <NavbarItem
+              className="hidden lg:flex "
+              key={index}
+              isActive={pathname === item.route}
+            >
               <Link
                 className="text-sm font-medium text-white transition-colors hover:text-tertiary"
                 href={item.route}

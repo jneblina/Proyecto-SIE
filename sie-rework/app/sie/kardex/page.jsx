@@ -52,7 +52,7 @@ const page = () => {
       <section className="mx-auto mt-8 max-w-[1600px] h-full overflow-auto ">
         <table className="kardex">
           <thead>
-            <tr className="bg-primary text-white">
+            <tr className="bg-tertiary text-white font-medium">
               {orderedSubjects.map((semester, index) => (
                 <th key={index}>Semestre {index + 1}</th>
               ))}
@@ -62,21 +62,26 @@ const page = () => {
             {maxSubjectsList.map((subject, rowIndex) => (
               <tr key={rowIndex}>
                 {orderedSubjects.map((subjectsList, index) => (
-                  <td key={index}>
+                  <td
+                    className={`${
+                      subjectsList[rowIndex] ? "hover:bg-[#90e0ef]" : ""
+                    }`}
+                    key={index}
+                  >
                     {subjectsList[rowIndex] && (
-                      <>
+                      <div className="flex flex-col items-stretch max-w-[178px] h-[121px] p-2 ">
                         <p className="text-start text-xs">
                           CRÉDITOS:{" "}
                           {subjectsList[rowIndex].materia_rel.creditos}
                         </p>
-                        <p className="my-2">
+                        <p className="flex text-center items-center h-full">
                           {subjectsList[rowIndex].materia_rel.nombre}
                         </p>
                         <p className="text-left text-xs">
                           SEMESTRE:{" "}
                           {subjectsList[rowIndex].materia_rel.semestre}
                         </p>
-                      </>
+                      </div>
                     )}
                   </td>
                 ))}
