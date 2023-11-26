@@ -75,8 +75,8 @@ const routes = [
   },
 
   {
-    route: "/sie/encuesta-de-carga",
-    name: "Encuesta de Carga",
+    route: "/sie/kardex",
+    name: "Kardex",
   },
   {
     route: "/sie/reinscripciones",

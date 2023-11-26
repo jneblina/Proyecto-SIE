@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} w-screen gob`}>
+      <body className={`${montserrat.className} w-screen gob `}>
         {/* <Header /> */}
         <Providers>{children}</Providers>
         {/* <Footer /> */}

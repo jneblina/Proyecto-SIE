@@ -3,21 +3,20 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-
     const estudiante = await prisma.estudiante.findFirst({
       where: { idEstudiante: Number(id) },
       include: {
-        modalidad_estudiante_modalidadTomodalidad : {select: {
-          nombreModalidad: true
-        }},
+        modalidad_rel: {
+          select: {
+            nombreModalidad: true,
+          },
+        },
         carreras: {
           select: {
-            nombre: true
+            nombre: true,
           },
-        
         },
       },
-
     });
     if (!estudiante)
       return NextResponse.json(

@@ -14,6 +14,18 @@ td {
     @apply py-2
 }
 
+table.kardex {
+  @apply w-full min-w-[1600px] overflow-auto
+}
+
+table.kardex thead th {
+  @apply text-white font-medium p-2
+}
+
+table.kardex tr td {
+  @apply border border-gray-500/60 px-2 text-center max-w-[169px]
+}
+
 .burger {
     position: relative;
     width: 40px;

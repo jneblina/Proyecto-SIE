@@ -3,14 +3,11 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-
     const kardex = await prisma.materiaestudiante.findMany({
       where: { estudiante: Number(id) },
       include: {
-        materia_materiaestudiante_materiaTomateria : 
-            true
-        
-      }
+        materia_rel: true,
+      },
     });
     if (!kardex)
       return NextResponse.json(
