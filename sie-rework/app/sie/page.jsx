@@ -5,6 +5,7 @@ import { Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
 export default function Sie() {
+  const pene = Session.id
   const [estudiante, setEstudiante] = useState({});
   useEffect(() => {
     fetch("/api/estudiante/1")

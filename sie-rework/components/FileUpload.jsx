@@ -14,6 +14,7 @@ const FileUpload = ({ title, children }) => {
     try{
       const data = new FormData()
       data.set('file', file)
+      data.set('title', file)
       const res = await fetch('/api/file',{
         method: 'POST',
         body: data
