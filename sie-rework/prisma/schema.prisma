@@ -20,7 +20,7 @@ model carreras {
 }
 
 model docente {
-  idDocente           Int    @id @default(autoincrement())
+  idDocente           Int     @id @default(autoincrement())
   nombre              String
   curp                String
   direccion           String
@@ -31,10 +31,11 @@ model docente {
   plazas              String
   puesto              String
   departamento        String
+  grupo               grupo[]
 }
 
 model documentos {
-  idDocumentos                   Int   @id
+  idDocumentos                   Int        @id
   actaNacimiento                 Bytes
   certificadoBachillerato        Bytes
   contratoEstudiante             Bytes
@@ -44,6 +45,9 @@ model documentos {
   cartaServicioSocial            Bytes
   tarjetaResidenteTemporal       Bytes
   idEstudiante                   Int
+  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "idEstudiante")
+
+  @@index([idEstudiante], map: "idEstudiante_idx")
 }
 
 model estudiante {
@@ -63,6 +67,7 @@ model estudiante {
   ciudad                String
   direccion             String
   idCarrera             Int
+  documentos            documentos[]
   carreras              carreras            @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
   modalidad_rel         modalidad           @relation("estudiante_modalidad", fields: [modalidad], references: [idModalidad], onDelete: NoAction, onUpdate: NoAction, map: "fk_estudiante_modalidad")
   materiaestudiante_rel materiaestudiante[] @relation("materiaestudiante_estudiante")
@@ -90,6 +95,7 @@ model materia {
   nombre                String              @db.Text
   creditos              Int
   semestre              Int
+  grupo                 grupo[]
   planestudios          planestudios        @relation(fields: [planEstudios], references: [idPlan], onDelete: NoAction, onUpdate: NoAction, map: "materia_ibfk_1")
   materiaestudiante_rel materiaestudiante[] @relation("materiaestudiante_materia")
 
@@ -124,4 +130,23 @@ model materiaestudiante {
 
   @@index([estudiante], map: "estudiante_idx")
   @@index([materia], map: "materia_idx")
+}
+
+model grupo {
+  idGrupo   Int     @id @default(autoincrement())
+  idMateria Int
+  paq       String  @db.VarChar(10)
+  lunes     String? @db.VarChar(20)
+  martes    String? @db.VarChar(20)
+  miercoles String? @db.VarChar(20)
+  jueves    String? @db.VarChar(20)
+  viernes   String? @db.VarChar(20)
+  sabado    String? @db.VarChar(20)
+  salon     String  @db.VarChar(25)
+  idDocente Int
+  docente   docente @relation(fields: [idDocente], references: [idDocente], onDelete: NoAction, onUpdate: NoAction, map: "idDocente")
+  materia   materia @relation(fields: [idMateria], references: [idMateria], onDelete: NoAction, onUpdate: NoAction, map: "idMateria")
+
+  @@index([idDocente], map: "idDocente_idx")
+  @@index([idMateria], map: "idMateria_idx")
 }
