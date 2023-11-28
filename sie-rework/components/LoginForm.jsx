@@ -37,15 +37,15 @@ export default function LoginForm() {
   };
 
   return (
-    <section className="flex flex-col space-y-4 bg-white shadow-md w-[90%] h-fit p-8 md:p-12 rounded-lg max-w-2xl">
-      <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
+    <section className="flex flex-col space-y-4 bg-white shadow-md w-full min-[520px]:w-[90%] h-fit px-4 min-[520px]:px-8 py-8 md:p-12 rounded-lg max-w-2xl">
+      <h2 className="font-bold text-3xl min-[520px]:text-4xl text-center my-2">
         Iniciar sesión
       </h2>
       {errorMessage && (
         <div className="flex flex-row items-center justify-between bg-[#c1121f] text-white  p-2 rounded-md ">
-          <div className="flex  gap-1 items-center">
+          <div className="flex flex-row gap-1 items-center">
             <IconExclamationCircle />
-            <p>Error, número de control o contraseña incorrectos.</p>
+            <p>Número de control o contraseña incorrectos.</p>
           </div>
           <button
             onClick={() => setErrorMessage(!errorMessage)}
