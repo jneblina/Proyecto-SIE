@@ -34,7 +34,7 @@ model docente {
 }
 
 model documentos {
-  idDocumentos                   Int        @id @default(autoincrement())
+  idDocumentos                   Int   @id
   actaNacimiento                 Bytes
   certificadoBachillerato        Bytes
   contratoEstudiante             Bytes
@@ -44,14 +44,10 @@ model documentos {
   cartaServicioSocial            Bytes
   tarjetaResidenteTemporal       Bytes
   idEstudiante                   Int
-  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], map: "Documentos_idEstudiante_fkey")
-
-  @@index([idEstudiante], map: "Documentos_idEstudiante_fkey")
 }
 
 model estudiante {
   idEstudiante          Int                 @unique @default(autoincrement())
-  numeroControl         String
   nombre                String
   modalidad             Int
   curp                  String
@@ -67,11 +63,10 @@ model estudiante {
   ciudad                String
   direccion             String
   idCarrera             Int
-  documentos            documentos[]
   carreras              carreras            @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
   modalidad_rel         modalidad           @relation("estudiante_modalidad", fields: [modalidad], references: [idModalidad], onDelete: NoAction, onUpdate: NoAction, map: "fk_estudiante_modalidad")
   materiaestudiante_rel materiaestudiante[] @relation("materiaestudiante_estudiante")
-  usuarios              usuarios?
+  usuarios              usuarios[]
 
   @@id([idEstudiante, modalidad])
   @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
@@ -79,10 +74,12 @@ model estudiante {
 }
 
 model usuarios {
-  idUsuarios       Int        @id @default(autoincrement())
-  correoUsuarios   String     @unique
-  passwordUsuarios String
-  estudiante       estudiante @relation(fields: [correoUsuarios], references: [correoInstitucional], map: "Usuarios_correoUsuarios_fkey")
+  idUsuarios         Int        @id @default(autoincrement())
+  estudianteUsuarios Int
+  passwordUsuarios   String
+  estudiante         estudiante @relation(fields: [estudianteUsuarios], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "Usuarios_estudiantes_fkey")
+
+  @@index([estudianteUsuarios], map: "Usuarios_estudiantes_fkey_idx")
 }
 
 model materia {
