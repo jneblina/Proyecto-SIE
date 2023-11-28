@@ -1,5 +1,6 @@
 "use client";
 
+import { IconExclamationCircle, IconX } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import { useState } from "react";
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
   const router = useRouter();
 
   //Usuario de prueba
@@ -25,7 +27,10 @@ export default function LoginForm() {
     });
 
     if (res.error) {
-      console.error(res.error);
+      setErrorMessage(true);
+      setTimeout(() => {
+        setErrorMessage(false);
+      }, 10000);
     } else {
       router.push("/sie");
     }
@@ -36,6 +41,20 @@ export default function LoginForm() {
       <h2 className="font-bold text-2xl sm:text-4xl text-center my-2">
         Iniciar sesión
       </h2>
+      {errorMessage && (
+        <div className="flex flex-row items-center justify-between bg-[#c1121f] text-white  p-2 rounded-md ">
+          <div className="flex  gap-1 items-center">
+            <IconExclamationCircle />
+            <p>Error, número de control o contraseña incorrectos.</p>
+          </div>
+          <button
+            onClick={() => setErrorMessage(!errorMessage)}
+            className="transition-colors hover:bg-white/20 rounded-full p-1"
+          >
+            <IconX />
+          </button>
+        </div>
+      )}
       <form
         action="submit"
         onSubmit={handleSubmit}
