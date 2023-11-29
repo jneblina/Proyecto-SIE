@@ -46,7 +46,9 @@ model documentos {
   idEstudiante                   Int
   estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], map: "idEstudiante")
 
-  @@index([idEstudiante], map: "Documentos_idEstudiante_fkey")
+
+  @@index([idEstudiante], map: "idEstudiante")
+
 }
 
 model estudiante {

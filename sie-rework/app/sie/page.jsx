@@ -5,10 +5,10 @@ import { Image } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
 export default function Sie() {
-  const pene = Session.id
+
   const [estudiante, setEstudiante] = useState({});
   useEffect(() => {
-    fetch("/api/estudiante/1")
+    fetch(`/api/estudiante/2023001`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa");
