@@ -47,7 +47,7 @@ model documentos {
   idEstudiante                   Int
   estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "idEstudiante")
 
-  @@index([idEstudiante], map: "idEstudiante_idx")
+  @@index([idEstudiante], map: "idEstudiante")
 }
 
 model estudiante {
@@ -81,7 +81,7 @@ model estudiante {
 
 model usuarios {
   idUsuarios         Int        @id @default(autoincrement())
-  estudianteUsuarios Int        
+  estudianteUsuarios Int
   passwordUsuarios   String
   estudiante         estudiante @relation(fields: [estudianteUsuarios], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "Usuarios_estudiantes_fkey")
 
