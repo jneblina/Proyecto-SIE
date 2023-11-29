@@ -295,8 +295,102 @@ VALUES (
         'Seminario de Titulación',
         2,
         8
-    );
+    ), (1, 'Desarrollo Web II', 5, 9), (1, 'Backend II', 5, 9);
 
 INSERT INTO
     materiaestudiante (estudiante, materia, estado)
 VALUES (2023001, 6, 1), (2023001, 7, 1), (2023001, 8, 1), (2023001, 9, 1), (2023001, 10, 1), (2023001, 11, 1), (2023001, 12, 1), (2023001, 13, 1), (2023001, 14, 1), (2023001, 15, 1), (2023001, 16, 1), (2023001, 17, 1), (2023001, 18, 1), (2023001, 19, 1), (2023001, 20, 1), (2023001, 21, 1), (2023001, 22, 1), (2023001, 23, 1), (2023001, 24, 1), (2023001, 25, 1), (2023001, 26, 1), (2023001, 27, 1), (2023001, 28, 1), (2023001, 29, 1), (2023001, 30, 1), (2023001, 31, 1), (2023001, 32, 1), (2023001, 33, 1), (2023001, 34, 1), (2023001, 35, 1), (2023001, 36, 1), (2023001, 37, 1), (2023001, 38, 1), (2023001, 39, 1), (2023001, 40, 1);
+
+INSERT INTO
+    docente (
+        nombre,
+        curp,
+        direccion,
+        telefono,
+        correoPersonal,
+        correoInstitucional,
+        titulo,
+        plazas,
+        puesto,
+        departamento
+    )
+VALUES (
+        'Pako',
+        'ABCD123456EFGHJKL',
+        'Calle 123, Gobierno',
+        '6461234567',
+        'pako@gmail.com',
+        'pako@ite.edu.mx',
+        'Ingeniero en Sistemas',
+        'Tiempo Completo',
+        'Profesor',
+        'Departamento de Informatica'
+    ), (
+        'María González',
+        'EFGH567890ABCD12',
+        'Avenida 456, Pueblo',
+        '9876543210',
+        'maria.gonzalez@yahoo.com',
+        'maria.gonzalez@instituto.edu',
+        'Maestría en Matemáticas',
+        'Medio Tiempo',
+        'Asistente',
+        'Departamento de Matemáticas'
+    ), (
+        'Carlos Rodríguez',
+        'JKLM987654POIU543',
+        'Carrera 789, Villa',
+        '5556667777',
+        'carlos.rodriguez@hotmail.com',
+        'carlos.rodriguez@instituto.edu',
+        'Ingeniero en Mecanica',
+        'Tiempo Completo',
+        'Coordinador',
+        'Departamento de Informática'
+    ), (
+        'Xenia',
+        'ADFJS0142SKEJDLP',
+        'Calle callesita, Ciudad',
+        '6469876541',
+        'xenia@gmail.com',
+        'xenia@ite.edu.mx',
+        'Ingeniera en Sistemas',
+        'Tiempo Completo',
+        'Profesor',
+        'Departamento de Informática'
+    );
+
+INSERT INTO
+    `sie`.`grupo` (
+        `idMateria`,
+        `paq`,
+        `lunes`,
+        `martes`,
+        `jueves`,
+        `viernes`,
+        `salon`,
+        `idDocente`
+    )
+VALUES (
+        '41',
+        '09E',
+        '16:00 a 17:00',
+        '16:00 a 17:00',
+        '15:00 a 17:00',
+        '16:00 a 17:00',
+        'LC4',
+        '4'
+    ), (
+        '42',
+        '09E',
+        '17:00 a 19:00',
+        '17:00 a 19:00',
+        NULL,
+        '17:00 a 18:00',
+        'LC5',
+        '1'
+    );
+
+INSERT INTO
+    `sie`.`grupoestudiante` (`idGrupo`, `idEstudiante`)
+VALUES ('1', '2023001'), ('2', '2023001');
