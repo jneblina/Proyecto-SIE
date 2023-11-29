@@ -10,23 +10,22 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        correo: {label: "Correo"},
+        id: {label: "Numero de Control"},
         password: {label: "Password"}
       }, async authorize (credentials, req) {
 
-        const userFound = await prisma.usuarios.findUnique({
+        const userFound = await prisma.usuarios.findFirst({
           where: {
-            correoUsuarios : credentials.correo
+            estudianteUsuarios: Number(credentials.id)
           }
         })
+        
         if (!userFound) throw new Error('No existe esa matricula')
-
-        const passwordValida = userFound.passwordUsuarios == credentials.password
-        if (!passwordValida) throw new Error('Contrasena incorrecta')
+        const validPassword = userFound.passwordUsuarios == credentials.password
+        if (!validPassword) throw new Error('Contrasena incorrecta')
 
         return {
-          id : userFound.idEstudiante,
-          email: userFound.correoUsuarios
+          name : credentials.id,
         }
       }
     }),
@@ -35,8 +34,8 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
+  
   pages: {signIn: "/"},
-
   session: {
     //La sesión caduca en 15 minutos
     maxAge: 60 * 15,

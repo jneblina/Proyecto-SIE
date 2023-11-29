@@ -5,7 +5,8 @@ import React from "react";
 import { useState } from "react";
 
 
-const FileUpload = ({ title, children }) => {
+const FileUpload = ({ title,type, children }) => {
+  
   const [file,setFile] = useState()
   
   const onSubmit = async (e) => {
@@ -14,7 +15,7 @@ const FileUpload = ({ title, children }) => {
     try{
       const data = new FormData()
       data.set('file', file)
-      data.set('title', file)
+      data.set('type', type)
       const res = await fetch('/api/file',{
         method: 'POST',
         body: data

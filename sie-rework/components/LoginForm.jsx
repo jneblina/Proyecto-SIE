@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginForm() {
-  const [correo, setCorreo] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -19,7 +19,7 @@ export default function LoginForm() {
     e.preventDefault();
 
     const res = await signIn("credentials", {
-      correo,
+      id,
       password,
       redirect: false,
     });
@@ -53,8 +53,8 @@ export default function LoginForm() {
             type="text"
             id="email"
             className="form-input"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
+            value={id}
+            onChange={(e) => setId(parseInt(e.target.value))}
           ></input>
           <label
             htmlFor="password"

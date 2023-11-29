@@ -81,7 +81,7 @@ model estudiante {
 
 model usuarios {
   idUsuarios         Int        @id @default(autoincrement())
-  estudianteUsuarios Int
+  estudianteUsuarios Int        
   passwordUsuarios   String
   estudiante         estudiante @relation(fields: [estudianteUsuarios], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "Usuarios_estudiantes_fkey")
 
