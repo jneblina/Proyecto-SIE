@@ -20,7 +20,7 @@ model carreras {
 }
 
 model docente {
-  idDocente           Int     @id @default(autoincrement())
+  idDocente           Int    @id @default(autoincrement())
   nombre              String
   curp                String
   direccion           String
@@ -31,11 +31,10 @@ model docente {
   plazas              String
   puesto              String
   departamento        String
-  grupo               grupo[]
 }
 
 model documentos {
-  idDocumentos                   Int        @id
+  idDocumentos                   Int        @id @default(autoincrement())
   actaNacimiento                 Bytes
   certificadoBachillerato        Bytes
   contratoEstudiante             Bytes
@@ -45,34 +44,34 @@ model documentos {
   cartaServicioSocial            Bytes
   tarjetaResidenteTemporal       Bytes
   idEstudiante                   Int
-  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "idEstudiante")
+  estudiante                     estudiante @relation(fields: [idEstudiante], references: [idEstudiante], map: "idEstudiante")
 
-  @@index([idEstudiante], map: "idEstudiante_idx")
+  @@index([idEstudiante], map: "Documentos_idEstudiante_fkey")
 }
 
 model estudiante {
-  idEstudiante          Int                 @unique @default(autoincrement())
-  nombre                String
-  modalidad             Int
-  curp                  String
-  fotoPerfil            String
-  telefono              String
-  correoInstitucional   String              @unique
-  correoPersonal        String
-  periodoIngreso        String
-  periodoActual         String
-  situacion             String
-  escuelaProcedencia    String
-  fechaNacimiento       DateTime
-  ciudad                String
-  direccion             String
-  idCarrera             Int
-  documentos            documentos[]
-  carreras              carreras            @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
-  modalidad_rel         modalidad           @relation("estudiante_modalidad", fields: [modalidad], references: [idModalidad], onDelete: NoAction, onUpdate: NoAction, map: "fk_estudiante_modalidad")
-  grupoestudiante       grupoestudiante[]
-  materiaestudiante_rel materiaestudiante[] @relation("materiaestudiante_estudiante")
-  usuarios              usuarios[]
+  idEstudiante                                               Int                 @unique @default(autoincrement())
+  numeroControl                                              String
+  nombre                                                     String
+  modalidad                                                  Int
+  curp                                                       String
+  fotoPerfil                                                 String
+  telefono                                                   String
+  correoInstitucional                                        String              @unique
+  correoPersonal                                             String
+  periodoIngreso                                             String
+  periodoActual                                              String
+  situacion                                                  String
+  escuelaProcedencia                                         String
+  fechaNacimiento                                            DateTime
+  ciudad                                                     String
+  direccion                                                  String
+  idCarrera                                                  Int
+  documentos                                                 documentos[]
+  carreras                                                   carreras            @relation(fields: [idCarrera], references: [idCarreras], map: "Estudiante_idCarrera_fkey")
+  modalidad_estudiante_modalidadTomodalidad                  modalidad           @relation("estudiante_modalidadTomodalidad", fields: [modalidad], references: [idModalidad], onDelete: NoAction, onUpdate: NoAction, map: "fk_estudiante_modalidad")
+  materiaestudiante_materiaestudiante_estudianteToestudiante materiaestudiante[] @relation("materiaestudiante_estudianteToestudiante")
+  usuarios                                                   usuarios?
 
   @@id([idEstudiante, modalidad])
   @@index([idCarrera], map: "Estudiante_idCarrera_fkey")
@@ -80,33 +79,30 @@ model estudiante {
 }
 
 model usuarios {
-  idUsuarios         Int        @id @default(autoincrement())
-  estudianteUsuarios Int
-  passwordUsuarios   String
-  estudiante         estudiante @relation(fields: [estudianteUsuarios], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "Usuarios_estudiantes_fkey")
-
-  @@index([estudianteUsuarios], map: "Usuarios_estudiantes_fkey_idx")
+  idUsuarios       Int        @id @default(autoincrement())
+  correoUsuarios   String     @unique
+  passwordUsuarios String
+  estudiante       estudiante @relation(fields: [correoUsuarios], references: [correoInstitucional], map: "Usuarios_correoUsuarios_fkey")
 }
 
 model materia {
-  idMateria             Int                 @id @default(autoincrement())
-  materiaPrevia         String?             @db.Text
-  materiaDependiente    String?             @db.Text
-  planEstudios          Int
-  nombre                String              @db.Text
-  creditos              Int
-  semestre              Int
-  grupo                 grupo[]
-  planestudios          planestudios        @relation(fields: [planEstudios], references: [idPlan], onDelete: NoAction, onUpdate: NoAction, map: "materia_ibfk_1")
-  materiaestudiante_rel materiaestudiante[] @relation("materiaestudiante_materia")
+  idMateria                                            Int                 @id @default(autoincrement())
+  materiaPrevia                                        String?             @db.Text
+  materiaDependiente                                   String?             @db.Text
+  planEstudios                                         Int
+  nombre                                               String              @db.Text
+  creditos                                             Int
+  semestre                                             Int
+  planestudios                                         planestudios        @relation(fields: [planEstudios], references: [idPlan], onDelete: NoAction, onUpdate: NoAction, map: "materia_ibfk_1")
+  materiaestudiante_materiaestudiante_materiaTomateria materiaestudiante[] @relation("materiaestudiante_materiaTomateria")
 
   @@index([planEstudios], map: "planEstudios")
 }
 
 model modalidad {
-  idModalidad     Int          @id @default(autoincrement())
-  nombreModalidad String       @db.VarChar(50)
-  estudiante_rel  estudiante[] @relation("estudiante_modalidad")
+  idModalidad                                Int          @id @default(autoincrement())
+  nombreModalidad                            String       @db.VarChar(50)
+  estudiante_estudiante_modalidadTomodalidad estudiante[] @relation("estudiante_modalidadTomodalidad")
 }
 
 model planestudios {
@@ -122,44 +118,13 @@ model trabajador {
 }
 
 model materiaestudiante {
-  idMateriaEstudiante Int        @id @default(autoincrement())
-  estudiante          Int
-  materia             Int
-  estado              Int
-  estudiante_rel      estudiante @relation("materiaestudiante_estudiante", fields: [estudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "estudiante")
-  materia_rel         materia    @relation("materiaestudiante_materia", fields: [materia], references: [idMateria], onDelete: NoAction, onUpdate: NoAction, map: "materia")
+  idMateriaEstudiante                                 Int        @id @default(autoincrement())
+  estudiante                                          Int
+  materia                                             Int
+  estado                                              Int
+  estudiante_materiaestudiante_estudianteToestudiante estudiante @relation("materiaestudiante_estudianteToestudiante", fields: [estudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "estudiante")
+  materia_materiaestudiante_materiaTomateria          materia    @relation("materiaestudiante_materiaTomateria", fields: [materia], references: [idMateria], onDelete: NoAction, onUpdate: NoAction, map: "materia")
 
   @@index([estudiante], map: "estudiante_idx")
   @@index([materia], map: "materia_idx")
-}
-
-model grupo {
-  idGrupo         Int               @id @default(autoincrement())
-  idMateria       Int
-  paq             String            @db.VarChar(10)
-  lunes           String?           @db.VarChar(20)
-  martes          String?           @db.VarChar(20)
-  miercoles       String?           @db.VarChar(20)
-  jueves          String?           @db.VarChar(20)
-  viernes         String?           @db.VarChar(20)
-  sabado          String?           @db.VarChar(20)
-  salon           String            @db.VarChar(25)
-  idDocente       Int
-  docente         docente           @relation(fields: [idDocente], references: [idDocente], onDelete: NoAction, onUpdate: NoAction, map: "idDocente")
-  materia         materia           @relation(fields: [idMateria], references: [idMateria], onDelete: NoAction, onUpdate: NoAction, map: "idMateria")
-  grupoestudiante grupoestudiante[]
-
-  @@index([idDocente], map: "idDocente_idx")
-  @@index([idMateria], map: "idMateria_idx")
-}
-
-model grupoestudiante {
-  idGrupoEstudiante Int        @id @default(autoincrement())
-  idGrupo           Int
-  idEstudiante      Int
-  estudiante        estudiante @relation(fields: [idEstudiante], references: [idEstudiante], onDelete: NoAction, onUpdate: NoAction, map: "estudianteGrupo")
-  grupo             grupo      @relation(fields: [idGrupo], references: [idGrupo], onDelete: NoAction, onUpdate: NoAction, map: "grupo")
-
-  @@index([idEstudiante], map: "idEstudiante_idx")
-  @@index([idGrupo], map: "idGrupo_idx")
 }

@@ -25,7 +25,7 @@ export default function LoginForm() {
       password,
       redirect: false,
     });
-    
+
     if (res.error) {
       setErrorMessage(true);
       setTimeout(() => {
@@ -42,16 +42,16 @@ export default function LoginForm() {
         Iniciar sesión
       </h2>
       {errorMessage && (
-        <div className="flex flex-row items-center justify-between bg-[#c1121f] text-white  p-2 rounded-md ">
+        <div className="flex flex-row items-center justify-between border border-[#c1121f] bg-[#ffe3e0] text-[#691e06] font-medium p-2 rounded-md ">
           <div className="flex flex-row gap-1 items-center">
-            <IconExclamationCircle />
-            <p>Número de control o contraseña incorrectos.</p>
+            <IconExclamationCircle color="#c1121f" />
+            <p>Datos de ingreso incorrectos.</p>
           </div>
           <button
             onClick={() => setErrorMessage(!errorMessage)}
             className="transition-colors hover:bg-white/20 rounded-full p-1"
           >
-            <IconX />
+            <IconX color="#c1121f" />
           </button>
         </div>
       )}
