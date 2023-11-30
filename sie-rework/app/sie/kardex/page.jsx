@@ -1,6 +1,7 @@
 "use client";
 
 import SieLayout from "@/components/SieLayout";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 const page = () => {
@@ -8,8 +9,10 @@ const page = () => {
 
   const [orderedSubjects, setOrderedSubjects] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/kardex/1")
+  const { data: session } = useSession();
+
+  const fetchKardex = (studentId) => {
+    fetch(`/api/kardex/${studentId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("La solicitud no fue exitosa");
@@ -22,7 +25,13 @@ const page = () => {
       .catch((error) => {
         console.error("Error en la solicitud:", error);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    if (session) {
+      fetchKardex(session.user.name);
+    }
+  }, [session]);
 
   useEffect(() => {
     groupPerSemester();
@@ -32,7 +41,8 @@ const page = () => {
     const semesters = {};
 
     subjects.forEach((subject) => {
-      const semester = subject.materia_rel.semestre;
+      const semester =
+        subject.materia_materiaestudiante_materiaTomateria.semestre;
       if (!semesters[semester]) {
         semesters[semester] = [];
       }
@@ -69,17 +79,20 @@ const page = () => {
                     key={index}
                   >
                     {subjectsList[rowIndex] && (
-                      <div className="flex flex-col items-stretch max-w-[178px] h-[121px] p-2 ">
+                      <div className="flex flex-col items-start max-w-[178px] h-[121px] p-2 ">
                         <p className="text-start text-xs">
                           CRÉDITOS:{" "}
-                          {subjectsList[rowIndex].materia_rel.creditos}
+                          {
+                            subjectsList[rowIndex]
+                              .materia_materiaestudiante_materiaTomateria
+                              .creditos
+                          }
                         </p>
-                        <p className="flex text-center items-center h-full">
-                          {subjectsList[rowIndex].materia_rel.nombre}
-                        </p>
-                        <p className="text-left text-xs">
-                          SEMESTRE:{" "}
-                          {subjectsList[rowIndex].materia_rel.semestre}
+                        <p className="flex text-start items-center h-full">
+                          {
+                            subjectsList[rowIndex]
+                              .materia_materiaestudiante_materiaTomateria.nombre
+                          }
                         </p>
                       </div>
                     )}

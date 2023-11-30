@@ -6,7 +6,7 @@ export async function GET(request, { params: { id } }) {
     const kardex = await prisma.materiaestudiante.findMany({
       where: { estudiante: Number(id) },
       include: {
-        materia_rel: true,
+        materia_materiaestudiante_materiaTomateria: true,
       },
     });
     if (!kardex)

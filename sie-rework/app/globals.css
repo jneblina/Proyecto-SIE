@@ -11,7 +11,7 @@ span {
 }
 
 table.profile td {
-    @apply py-2
+    @apply py-2 px-1 text-sm
 }
 
 table.kardex {
