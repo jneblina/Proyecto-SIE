@@ -6,7 +6,7 @@ export async function GET(request, { params: { id } }) {
     const estudiante = await prisma.estudiante.findFirst({
       where: { idEstudiante: Number(id) },
       include: {
-        modalidad_rel: {
+        modalidad_estudiante_modalidadTomodalidad: {
           select: {
             nombreModalidad: true,
           },
@@ -24,7 +24,7 @@ export async function GET(request, { params: { id } }) {
         { message: "Estudiante no encontrado" },
         { status: 404 }
       );
-      
+
     return NextResponse.json(estudiante);
   } catch (error) {
     if (error instanceof Error)

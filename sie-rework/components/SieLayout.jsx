@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import HeaderNav from "./HeaderNav";
 import Link from "next/link";
+import Loading from "./Loading";
 
 const SieLayout = ({ children }) => {
   const { data: session, status } = useSession({
@@ -21,11 +22,7 @@ const SieLayout = ({ children }) => {
     new Date(session.expires).getTime() > Date.now();
 
   if (status === "loading") {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-[#6A1B31]"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!isSessionValid) {
@@ -43,7 +40,6 @@ const SieLayout = ({ children }) => {
       </div>
     );
   }
-
 
   return (
     <div className="flex flex-col">

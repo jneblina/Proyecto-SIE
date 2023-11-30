@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Button,
   Avatar,
   Dropdown,
   DropdownMenu,
@@ -14,48 +13,72 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { signOut, useSession } from "next-auth/react";
 
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IconMenu, IconMenu2, IconX } from "@tabler/icons-react";
+import {
+  IconMenu,
+  IconMenu2,
+  IconX,
+  IconUser,
+  IconTable,
+  IconCoin,
+  IconFile,
+  IconUsersGroup,
+  IconBriefcase2,
+  IconCash,
+  IconFilePlus,
+  IconHome,
+  IconCalendar,
+  IconFileCheck,
+  IconDeviceIpadQuestion,
+  IconClipboard,
+  IconCheckupList,
+} from "@tabler/icons-react";
 import Link from "next/link";
 
 const userRoutes = [
   {
     route: "/sie/datos-generales",
     name: "Perfil",
+    icon: IconUser,
   },
 
   {
     route: "/sie/kardex",
     name: "Kardex",
+    icon: IconTable,
   },
   {
     route: "/sie/grupos-actuales",
     name: "Grupos Actuales",
+    icon: IconUsersGroup,
   },
   {
     route: "/sie/adeudos",
     name: "Adeudos",
+    icon: IconCoin,
   },
   {
     route: "/sie/residencias",
     name: "Residencias",
+    icon: IconBriefcase2,
   },
 
   {
     route: "/sie/carga-documentos",
     name: "Documentos",
+    icon: IconFile,
   },
 
   {
     route: "/sie/actividades-complementarias",
     name: "Act. Complementarias",
+    icon: IconFilePlus,
   },
 ];
 
@@ -63,33 +86,40 @@ const routes = [
   {
     route: "/sie",
     name: "Inicio",
+    icon: IconHome,
   },
 
   {
     route: "/sie/horario",
     name: "Horario",
+    icon: IconCalendar,
   },
   {
     route: "/sie/calificaciones",
     name: "Calificaciones",
+    icon: IconFileCheck,
   },
   {
     route: "/sie/encuesta-de-carga",
     name: "Encuesta de Carga",
+    icon: IconDeviceIpadQuestion,
   },
 
   {
     route: "/sie/reinscripciones",
     name: "Reinscripciones",
+    icon: IconClipboard,
   },
 
   {
     route: "/sie/servicios",
     name: "Servicios",
+    icon: IconCash,
   },
   {
     route: "/sie/evaluacion-docente",
     name: "Evaluación Docente",
+    icon: IconCheckupList,
   },
 ];
 
@@ -131,12 +161,7 @@ const HeaderNav = () => {
 
   return (
     <header>
-      <Navbar
-        onMenuOpenChange={setIsMenuOpen}
-        maxWidth="2xl"
-        height={"3rem"}
-        className="bg-primary"
-      >
+      <Navbar maxWidth="2xl" height={"3rem"} className="bg-primary">
         <NavbarContent>
           <NavbarBrand>
             <p className="font-bold text-white ml-1 hidden sm:flex">
@@ -166,7 +191,7 @@ const HeaderNav = () => {
               textValue="user-info"
               className="h-14 gap-2"
             >
-              <p className="font-semibold">Iniciaste sesión como:</p>
+              <p className="font-semibold">Bienvenido albatro!</p>
               <p className="font-semibold">{session?.user.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" textValue="logout" color="default">
@@ -187,7 +212,6 @@ const HeaderNav = () => {
         <MenuNavBar />
       </Navbar>
       <Navbar
-        onMenuOpenChange={setIsMenuOpen}
         maxWidth="2xl"
         height={"3rem"}
         classNames={{
@@ -217,17 +241,13 @@ const HeaderNav = () => {
           <NavbarItem className="gap-2">
             <button
               id="menu"
-              className="text-gray-400  p-1 rounded-md border-gray-400 border transition-colors hover:border-white"
+              className="flex flex-row gap-1 items-center   p-1 rounded-md border-gray-400 border transition-colors hover:border-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <IconMenu2 size={25} />
+              <IconMenu2 size={30} />
+
+              <p className="font-bold text-inherit cursor-pointer ">Todo</p>
             </button>
-            <label
-              htmlFor="menu"
-              className="font-bold text-inherit cursor-pointer "
-            >
-              Todo
-            </label>
           </NavbarItem>
           {routes.map((item, index) => (
             <NavbarItem
@@ -275,8 +295,11 @@ const HeaderNav = () => {
               {routes.map((item, index) => (
                 <li
                   key={index}
-                  className="flex rounded-lg font-medium text-lg  hover:text-white hover:bg-secondary"
+                  className="flex rounded-lg font-medium text-lg text-gray-700  hover:text-white hover:bg-secondary"
                 >
+                  {item.icon && (
+                    <item.icon size={28} strokeWidth={2} className="m-2" />
+                  )}
                   <Link className="p-2 w-full h-full" href={item.route}>
                     {item.name}
                   </Link>
@@ -289,8 +312,11 @@ const HeaderNav = () => {
               {userRoutes.map((item, index) => (
                 <li
                   key={index}
-                  className="flex rounded-lg font-medium text-lg  hover:text-white hover:bg-secondary"
+                  className="flex rounded-lg items-center text-gray-700 font-medium text-lg  hover:text-white hover:bg-secondary"
                 >
+                  {item.icon && (
+                    <item.icon size={28} strokeWidth={2} className="m-2" />
+                  )}
                   <Link className="p-2 w-full h-full" href={item.route}>
                     {item.name}
                   </Link>

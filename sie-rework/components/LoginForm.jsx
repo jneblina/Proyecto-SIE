@@ -1,17 +1,18 @@
 "use client";
 
 import { IconExclamationCircle, IconX } from "@tabler/icons-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
 export default function LoginForm() {
+  const router = useRouter();
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
-  const router = useRouter();
 
   //Usuario de prueba
   //email: pruebatest@gmail.com
@@ -73,7 +74,7 @@ export default function LoginForm() {
             id="email"
             className="form-input"
             value={id}
-            onChange={(e) => setId(parseInt(e.target.value))}
+            onChange={(e) => setId(e.target.value)}
           ></input>
           <label
             htmlFor="password"
