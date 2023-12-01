@@ -13,7 +13,7 @@ export async function GET(request, { params: { id } }) {
     });
     if (!servicios)
       return NextResponse.json(
-        { message: "No tienes historial de servicios" },
+        { message: "No se ha encontrado un historial de servicios" },
         { status: 404 }
       );
     return NextResponse.json(servicios);

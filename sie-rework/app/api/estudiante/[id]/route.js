@@ -82,7 +82,10 @@ export async function PUT(request, { params: { id } }) {
     });
 
     if (estudiante == null) {
-      return NextResponse.json({ message: `El alumno ${id} no existe` });
+      return NextResponse.json(
+        { message: `El alumno ${id} no existe` },
+        { status: 404 }
+      );
     }
   } catch (error) {
     if (error instanceof Error)
