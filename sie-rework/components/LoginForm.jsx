@@ -72,6 +72,7 @@ export default function LoginForm() {
             required={true}
             type="text"
             id="email"
+            maxLength={10}
             className="form-input"
             value={id}
             onChange={(e) => setId(e.target.value)}
@@ -86,6 +87,7 @@ export default function LoginForm() {
             required={true}
             type="password"
             id="password"
+            maxLength={10}
             className="form-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
