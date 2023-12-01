@@ -41,54 +41,249 @@ VALUES (
     );
 
 INSERT INTO
-    materia (
-        materiaPrevia,
-        materiaDependiente,
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+Values (1, ' Calculo Diferencial', 5, 1), (
+        1,
+        ' Fundamentos De Programacion',
+        5,
+        1
+    ), (1, ' Taller De Etica', 4, 1), (
+        1,
+        ' Matematicas Discretas',
+        5,
+        1
+    ), (
+        1,
+        ' Taller De Administracion',
+        4,
+        1
+    ), (
+        1,
+        ' Fundamentos De Investigacion',
+        4,
+        1
+    );
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+Values (1, ' Calculo Integral', 5, 2), (
+        1,
+        ' Programacion Orientada A Objetos',
+        5,
+        2
+    ), (
+        1,
+        ' Contabilidad Financiera',
+        4,
+        2
+    ), (1, ' Quimica', 4, 2), (1, ' Algebra Lineal', 5, 2), (
+        1,
+        ' Probabilidad Y Estadisticas',
+        5,
+        2
+    );
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (1, ' Calculo Vectorial', 5, 3), (1, ' Estructura De Datos', 5, 3), (1, ' Cultura Empresarial', 4, 3), (
+        1,
+        ' Investigacion De Operaciones',
+        4,
+        3
+    ), (
+        1,
+        ' Desarrollo Sustentable',
+        5,
+        3
+    ), (1, ' Fisica Gneral', 5, 3), (
+        1,
+        ' Principios Electricos Y Aplicaciones Digitales',
+        5,
+        3
+    );
+
+INSERT INTO
+    MATERIA (
         planEstudios,
         nombre,
         creditos,
         semestre
     )
 VALUES (
-        'Matemáticas Básicas',
-        'Cálculo I',
         1,
-        'Álgebra Lineal',
-        3,
-        1
-    ), (
-        'Cálculo I',
-        'Cálculo II',
-        2,
-        'Cálculo I',
-        4,
-        2
-    ), (
-        'Física I',
-        'Física II',
-        1,
-        'Física I',
+        ' Ecuaciones Diferenciales',
         5,
-        3
-    ), (
-        'Programación Básica',
-        'Estructuras de Datos',
-        3,
-        'Programación Avanzada',
-        4,
+        4
+    ), (1, ' Metodos Numericos', 4, 4), (
+        1,
+        ' Topicos Avanzados De Programacion',
+        5,
+        4
+    ), (1, ' Simulacion', 5, 4), (
+        1,
+        ' Arquitectura De Computadoras',
+        5,
         4
     ), (
-        'Química General',
-        'Química Orgánica',
-        2,
-        'Química Inorgánica',
-        3,
+        1,
+        ' Fundamentos De Base De Datos',
+        5,
+        4
+    ), (1, ' Sistemas Operativos', 4, 4);
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (
+        1,
+        ' Lenguajes Y Automatas 1',
+        5,
+        5
+    ), (
+        1,
+        'fundamentos De Telecomunicaciones',
+        4,
+        5
+    ), (
+        1,
+        ' Fundamenos De Ingeneria De Software',
+        4,
+        5
+    ), (1, ' Programacion Web', 5, 5), (1, 'graficacion', 4, 5), (
+        1,
+        ' Taller De Base De Datos',
+        4,
+        5
+    ), (
+        1,
+        't Aller De Sistemas Operativos',
+        4,
         5
     );
 
 INSERT INTO
+    MATERIA(
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (
+        1,
+        ' Lenguaje Y Automatas 2',
+        5,
+        6
+    ), (
+        1,
+        ' Redes De Computadoras',
+        5,
+        6
+    ), (
+        1,
+        ' Ingeneria De Software',
+        5,
+        6
+    ), (
+        1,
+        ' Lenguajes De Interfaz',
+        4,
+        6
+    ), (
+        1,
+        ' Taller De Investigacion 1',
+        4,
+        6
+    ), (
+        1,
+        ' Administracion De Base De Datos',
+        5,
+        6
+    );
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (
+        1,
+        ' Programacion Logica Y Funcional',
+        4,
+        7
+    ), (
+        1,
+        ' Conmutacion Y Enrutamiento En Redes De Datos',
+        5,
+        7
+    ), (
+        1,
+        ' Gestionn De Proyectos De Software',
+        6,
+        7
+    ), (
+        1,
+        ' Sistemas Programables',
+        4,
+        7
+    ), (
+        1,
+        ' Taller De Investigacion 2',
+        4,
+        7
+    );
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (
+        1,
+        ' Inteligencia Artificial',
+        4,
+        8
+    ), (
+        1,
+        ' Administración De Redes',
+        4,
+        8
+    );
+
+INSERT INTO
+    MATERIA (
+        planEstudios,
+        nombre,
+        creditos,
+        semestre
+    )
+VALUES (1, 'Desarrollo Web II', 5, 9), (1, 'Backend II', 5, 9);
+
+INSERT INTO
     estudiante (
-        numeroControl,
+        idEstudiante,
         nombre,
         modalidad,
         curp,
@@ -157,145 +352,6 @@ VALUES (
         'Calle 789, Colonia MNO',
         3
     );
-
-INSERT INTO
-    materia (
-        planEstudios,
-        nombre,
-        creditos,
-        semestre
-    )
-VALUES (
-        1,
-        'Introducción a la Programación',
-        4,
-        1
-    ), (1, 'Álgebra Lineal', 3, 1), (1, 'Cálculo Diferencial', 4, 1), (1, 'Estructuras de Datos', 4, 2), (1, 'Cálculo Integral', 4, 2), (
-        1,
-        'Arquitectura de Computadoras',
-        4,
-        3
-    ), (
-        1,
-        'Programación Orientada a Objetos',
-        4,
-        3
-    ), (1, 'Sistemas Operativos', 4, 4), (
-        1,
-        'Análisis y Diseño de Algoritmos',
-        4,
-        4
-    ), (
-        1,
-        'Redes de Computadoras',
-        4,
-        5
-    ), (1, 'Base de Datos', 4, 5), (
-        1,
-        'Ingeniería de Software',
-        4,
-        6
-    ), (
-        1,
-        'Interconexión de Redes',
-        4,
-        6
-    ), (1, 'Desarrollo Web', 4, 7), (
-        1,
-        'Inteligencia Artificial',
-        4,
-        7
-    ), (
-        1,
-        'Sistemas Distribuidos',
-        4,
-        8
-    ), (
-        1,
-        'Seguridad Informática',
-        4,
-        8
-    ), (
-        1,
-        'Programación Concurrente',
-        4,
-        9
-    ), (
-        1,
-        'Diseño de Compiladores',
-        4,
-        9
-    ), (
-        1,
-        'Administración de Proyectos de Software',
-        3,
-        1
-    ), (
-        1,
-        'Ética en la Ingeniería de Sistemas',
-        3,
-        1
-    ), (
-        1,
-        'Computación en la Nube',
-        4,
-        2
-    ), (
-        1,
-        'Desarrollo de Aplicaciones Móviles',
-        4,
-        2
-    ), (1, 'Big Data Analytics', 4, 3), (
-        1,
-        'Internet de las Cosas (IoT)',
-        4,
-        3
-    ), (
-        1,
-        'Realidad Virtual y Aumentada',
-        4,
-        4
-    ), (
-        1,
-        'Gestión de Servicios TI',
-        3,
-        4
-    ), (
-        1,
-        'Análisis Forense Computacional',
-        3,
-        5
-    ), (1, 'Robótica', 4, 5), (
-        1,
-        'Emprendimiento Tecnológico',
-        3,
-        6
-    ), (
-        1,
-        'Inglés Técnico para Sistemas',
-        3,
-        6
-    ), (
-        1,
-        'Proyecto de Investigación en Sistemas',
-        4,
-        7
-    ), (
-        1,
-        'Tópicos Avanzados en Sistemas Computacionales',
-        4,
-        7
-    ), (
-        1,
-        'Práctica Profesional Supervisada',
-        6,
-        8
-    ), (
-        1,
-        'Seminario de Titulación',
-        2,
-        8
-    ), (1, 'Desarrollo Web II', 5, 9), (1, 'Backend II', 5, 9);
 
 INSERT INTO
     materiaestudiante (estudiante, materia, estado)

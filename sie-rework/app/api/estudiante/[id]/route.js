@@ -6,7 +6,7 @@ export async function GET(request, { params: { id } }) {
     const estudiante = await prisma.estudiante.findFirst({
       where: { idEstudiante: Number(id) },
       include: {
-        modalidad_rel: {
+        modalidad_estudiante_modalidadTomodalidad: {
           select: {
             nombreModalidad: true,
           },
