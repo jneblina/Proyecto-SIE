@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import SieLayout from "@/components/SieLayout";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ const page = () => {
   const [subjects, setSubjects] = useState([]);
 
   const [orderedSubjects, setOrderedSubjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { data: session } = useSession();
 
@@ -21,9 +23,11 @@ const page = () => {
       })
       .then((data) => {
         setSubjects(data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error en la solicitud:", error);
+        setIsLoading(false);
       });
   };
 
@@ -59,50 +63,55 @@ const page = () => {
 
   return (
     <SieLayout>
-      <section className="mx-auto mt-8 max-w-[1600px] h-full overflow-auto ">
-        <table className="kardex">
-          <thead>
-            <tr className="bg-tertiary text-white font-medium">
-              {orderedSubjects.map((semester, index) => (
-                <th key={index}>Semestre {index + 1}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {maxSubjectsList.map((subject, rowIndex) => (
-              <tr key={rowIndex}>
-                {orderedSubjects.map((subjectsList, index) => (
-                  <td
-                    className={`${
-                      subjectsList[rowIndex] ? "hover:bg-[#90e0ef]" : ""
-                    }`}
-                    key={index}
-                  >
-                    {subjectsList[rowIndex] && (
-                      <div className="flex flex-col items-start max-w-[178px] h-[121px] p-2 ">
-                        <p className="text-start text-xs">
-                          CRÉDITOS:{" "}
-                          {
-                            subjectsList[rowIndex]
-                              .materia_materiaestudiante_materiaTomateria
-                              .creditos
-                          }
-                        </p>
-                        <p className="flex text-start items-center h-full">
-                          {
-                            subjectsList[rowIndex]
-                              .materia_materiaestudiante_materiaTomateria.nombre
-                          }
-                        </p>
-                      </div>
-                    )}
-                  </td>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <section className="mx-auto mt-8 max-w-[1600px] h-full overflow-auto ">
+          <table className="kardex">
+            <thead>
+              <tr className="bg-tertiary text-white font-medium">
+                {orderedSubjects.map((semester, index) => (
+                  <th key={index}>Semestre {index + 1}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+            </thead>
+            <tbody>
+              {maxSubjectsList.map((subject, rowIndex) => (
+                <tr key={rowIndex}>
+                  {orderedSubjects.map((subjectsList, index) => (
+                    <td
+                      className={`${
+                        subjectsList[rowIndex] ? "hover:bg-[#90e0ef]" : ""
+                      }`}
+                      key={index}
+                    >
+                      {subjectsList[rowIndex] && (
+                        <div className="flex flex-col items-start max-w-[178px] h-[121px] p-2 ">
+                          <p className="text-start text-xs">
+                            CRÉDITOS:{" "}
+                            {
+                              subjectsList[rowIndex]
+                                .materia_materiaestudiante_materiaTomateria
+                                .creditos
+                            }
+                          </p>
+                          <p className="flex text-start items-center h-full">
+                            {
+                              subjectsList[rowIndex]
+                                .materia_materiaestudiante_materiaTomateria
+                                .nombre
+                            }
+                          </p>
+                        </div>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      )}
     </SieLayout>
   );
 };
