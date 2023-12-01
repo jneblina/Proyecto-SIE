@@ -3,17 +3,24 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const calificaciones = await prisma.residencias.findFirst({
+    const complementarias = await prisma.actividadcom.findMany({
       where: {
-        estudianteRes: Number(id),
+        estudianteAct: Number(id),
+      },
+      include: {
+        docente: {
+          select: {
+            nombre: true,
+          },
+        },
       },
     });
-    if (!calificaciones)
+    if (!complementarias)
       return NextResponse.json(
-        { message: "No se ha encontrado una residencia." },
+        { message: "No tienes actividades complementarias" },
         { status: 404 }
       );
-    return NextResponse.json(calificaciones);
+    return NextResponse.json(complementarias);
   } catch (error) {
     if (error instanceof Error)
       return NextResponse.json(error.message, { status: 500 });

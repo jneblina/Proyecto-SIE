@@ -11,7 +11,7 @@ export async function GET(request, { params: { id } }) {
     });
     if (!kardex)
       return NextResponse.json(
-        { message: "Estudiante no encontrado" },
+        { message: "Kardex de estudiante no encontrado" },
         { status: 404 }
       );
     return NextResponse.json(kardex);

@@ -3,17 +3,14 @@ import { prisma } from "@/libs/prisma";
 
 export async function GET() {
   try {
-
     const kardex = await prisma.materiaestudiante.findMany({
       include: {
-        materia_materiaestudiante_materiaTomateria : 
-            true
-        
-      }
+        materia_materiaestudiante_materiaTomateria: true,
+      },
     });
     if (!kardex)
       return NextResponse.json(
-        { message: "Estudiante no encontrado" },
+        { message: "No existe ningun kardex" },
         { status: 404 }
       );
     return NextResponse.json(kardex);

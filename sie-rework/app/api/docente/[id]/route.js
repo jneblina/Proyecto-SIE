@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request,{ params: { id } }) {
+export async function GET(request, { params: { id } }) {
   try {
     const docente = await prisma.docente.findFirst({
       where: { idDocente: Number(id) },
@@ -51,7 +51,10 @@ export async function PUT(request, { params: { id } }) {
     });
 
     if (docente == null) {
-      return NextResponse.json({ message: `El Docente ${id} no existe` });
+      return NextResponse.json(
+        { message: `El Docente ${id} no existe` },
+        { status: 404 }
+      );
     }
   } catch (error) {
     if (error instanceof Error)
