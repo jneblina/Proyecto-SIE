@@ -49,16 +49,6 @@ const userRoutes = [
   },
 
   {
-    route: "/sie/kardex",
-    name: "Kardex",
-    icon: IconTable,
-  },
-  {
-    route: "/sie/grupos-actuales",
-    name: "Grupos Actuales",
-    icon: IconUsersGroup,
-  },
-  {
     route: "/sie/adeudos",
     name: "Adeudos",
     icon: IconCoin,
@@ -90,6 +80,12 @@ const routes = [
   },
 
   {
+    route: "/sie/kardex",
+    name: "Kardex",
+    icon: IconTable,
+  },
+
+  {
     route: "/sie/horario",
     name: "Horario",
     icon: IconCalendar,
@@ -98,17 +94,6 @@ const routes = [
     route: "/sie/calificaciones",
     name: "Calificaciones",
     icon: IconFileCheck,
-  },
-  {
-    route: "/sie/encuesta-de-carga",
-    name: "Encuesta de Carga",
-    icon: IconDeviceIpadQuestion,
-  },
-
-  {
-    route: "/sie/reinscripciones",
-    name: "Reinscripciones",
-    icon: IconClipboard,
   },
 
   {
