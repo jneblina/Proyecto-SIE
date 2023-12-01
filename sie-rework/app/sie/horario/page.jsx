@@ -28,7 +28,7 @@ const Horario = () => {
         console.error("Error en la solicitud:", error);
         setLoading(true);
       });
-  }, [session?.user.name]);
+  }, [session]);
 
   const daysOfWeek = [
     "lunes",

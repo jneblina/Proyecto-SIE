@@ -179,10 +179,12 @@ const HeaderNav = () => {
                 as={"button"}
                 className="transition-transform"
                 color="secondary"
-                name="Albatro Jose"
+                name={session?.user.email.fullName}
                 size="sm"
               />
-              <p className="font-bold text-white ml-1 ">Usuario</p>
+              <p className="font-bold text-white ml-1 ">
+                {session?.user.email.fullName}
+              </p>
             </div>
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -191,8 +193,8 @@ const HeaderNav = () => {
               textValue="user-info"
               className="h-14 gap-2"
             >
-              <p className="font-semibold">Bienvenido albatro!</p>
-              <p className="font-semibold">{session?.user.email}</p>
+              <p className="font-semibold">Iniciaste sesión como:</p>
+              <p className="font-semibold">{session?.user.email.email}</p>
             </DropdownItem>
             <DropdownItem key="profile" textValue="logout" color="default">
               <Link href="/sie/datos-generales">Perfil</Link>
