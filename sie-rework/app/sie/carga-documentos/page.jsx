@@ -4,7 +4,6 @@ import SieLayout from "@/components/SieLayout";
 import React from "react";
 
 const page = () => {
-
   return (
     <SieLayout>
       <section className="mx-auto mt-8 max-w-7xl h-full ">
@@ -13,6 +12,7 @@ const page = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab vero
             asperiores laborum natus dignissimos nobis architecto quo, culpa
           </FileUpload>
+
           <FileUpload title={"Certificado bachillerato"} type={2}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab vero
             asperiores laborum natus dignissimos nobis architecto quo, culpa
