@@ -2,7 +2,7 @@
 
 Autores: Neblina Jan, Corona Hugo, Flores Adrian, Muro Alan, Vázquez Antonio, Rulfo Diego, Calderon Jorge, Rodriguez Aleida
 
-Deploy en Vercel: https://proyecto-sie.vercel.app/
+Deploy en Railway: https://siesito-production.up.railway.app/
 
 ## Contenido
 - Metas
@@ -20,8 +20,8 @@ Deploy en Vercel: https://proyecto-sie.vercel.app/
 - Instrucciones
 
 ## Links
-- 
-- 
+- https://trello.com/b/wnWOtn5t/sie-20
+- https://docs.google.com/spreadsheets/d/16c-oPELes9e_3i2mursy1_Ji5GWLwH0I5jPJaYJcHwo/edit?pli=1#gid=1425102191
 
 ## Objetivo
 El objetivo principal de este proyecto es desarrollar un sistema de control escolar integral que atienda las necesidades de profesores, administrativos y alumnos en un entorno educativo. Este sistema tiene como finalidad mejorar la eficiencia y la calidad de la gestión académica y administrativa en la institución educativa, facilitando el seguimiento y registro de información clave relacionada con el proceso educativo. 
@@ -48,17 +48,22 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 
 ## Overview
 
-## Solution 1
+## Solución
 ### Frontend
-_Frontend…_
-### Backend
-_Backend…_
 
-## Solution 2
-### Frontend
-_Frontend…_
+### Inicio de sesión
+![Inicio de sesión](https://imgur.com/a/OQQ0G1A)
+
+### Página de inicio
+![Pagina de inicio](https://imgur.com/a/9YRrF8O)
+
+### Kardex
+![Kardexn](https://imgur.com/a/XET5r4b)
+
 ### Backend
-_Backend…_
+
+### Diagrama entidad relación
+![DiagramaER](https://imgur.com/a/SAWfAkB)
 
 ## Consideraciones
 - Requisitos de los Usuarios: Comprender las necesidades y expectativas de profesores, administrativos, alumnos y padres de familia es fundamental. Realiza encuestas o entrevistas para recopilar sus requisitos y asegúrate de que el sistema satisfaga sus necesidades.
@@ -74,7 +79,3 @@ _Backend…_
 - Participación de los Usuarios: Involucra a los usuarios en el proceso de desarrollo para obtener retroalimentación y ajustar el sistema según sus necesidades.
 - Plan de Implementación: Elabora un plan detallado de implementación que incluya una estrategia de migración de datos, una hoja de ruta de lanzamiento y un período de transición suave.
 - Evaluación Continua: Planifica la evaluación y mejora continua del sistema después de su implementación para asegurarte de que siga siendo efectivo y cumpla con los objetivos establecidos.
-
-## Instrucciones
-
-Aqui van las instrucciones para ejecutar este proyecto: 
