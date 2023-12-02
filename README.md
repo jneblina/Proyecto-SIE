@@ -52,18 +52,18 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 ### Frontend
 
 ### Inicio de sesión
-[Iniciar sesion](https://i.imgur.com/WZARs9E.png)
+![Iniciar sesion](https://i.imgur.com/WZARs9E.png)
 
 ### Página de inicio
-[Inicio](https://i.imgur.com/bBk9i6c.png)
+![Inicio](https://i.imgur.com/bBk9i6c.png)
 
 ### Kardex
-[Kardex](https://i.imgur.com/MT9opCu.png)
+![Kardex](https://i.imgur.com/MT9opCu.png)
 
 ### Backend
 
 ### Diagrama entidad relación
-[DiagramaER](https://i.imgur.com/otj55Ku.png)
+![DiagramaER](https://i.imgur.com/otj55Ku.png)
 
 ## Consideraciones
 - Requisitos de los Usuarios: Comprender las necesidades y expectativas de profesores, administrativos, alumnos y padres de familia es fundamental. Realiza encuestas o entrevistas para recopilar sus requisitos y asegúrate de que el sistema satisfaga sus necesidades.
