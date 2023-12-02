@@ -52,7 +52,7 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 ### Frontend
 
 ### Inicio de sesión
-![Inicio de sesión](https://imgur.com/a/OQQ0G1A)
+![Inicio de sesión](https://imgur.com/a/OQQ0G1A.png)
 
 ### Página de inicio
 ![Pagina de inicio](https://imgur.com/a/9YRrF8O)
