@@ -63,7 +63,7 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 ### Backend
 
 ### Diagrama entidad relación
-![DiagramaER](https://imgur.com/a/SAWfAkB)
+![DiagramaER](https://imgur.com/a/foMjmPj)
 
 ## Consideraciones
 - Requisitos de los Usuarios: Comprender las necesidades y expectativas de profesores, administrativos, alumnos y padres de familia es fundamental. Realiza encuestas o entrevistas para recopilar sus requisitos y asegúrate de que el sistema satisfaga sus necesidades.
