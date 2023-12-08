@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import { prisma } from "@/libs/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
   providers: [
@@ -16,6 +15,14 @@ const handler = NextAuth({
           where: {
             estudianteUsuarios: Number(credentials.id),
           },
+          include: {
+            estudiante: {
+              select: {
+                nombre: true,
+                correoInstitucional: true,
+              },
+            },
+          },
         });
 
         if (!userFound) throw new Error("No existe esa matricula");
@@ -23,14 +30,16 @@ const handler = NextAuth({
           userFound.passwordUsuarios == credentials.password;
         if (!validPassword) throw new Error("Contrasena incorrecta");
 
-        return {
+        const user = {
           name: credentials.id,
+          email: {
+            email: userFound.estudiante.correoInstitucional,
+            fullName: userFound.estudiante.nombre,
+          },
         };
+
+        return user;
       },
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
 

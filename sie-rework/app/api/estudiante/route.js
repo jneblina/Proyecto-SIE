@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const estudiantes = await prisma.estudiante.findMany({
       include:{
-        modalidad_rel : {select: {
+        modalidad_estudiante_modalidadTomodalidad : {select: {
           nombreModalidad: true
         }},
         carreras: {

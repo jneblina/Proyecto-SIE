@@ -9,5 +9,7 @@ export default function Home() {
   useEffect(() => {
     router.push("/sie");
   }, []);
-  return <Loading />;
+  return (
+    <Loading />
+  );
 }
