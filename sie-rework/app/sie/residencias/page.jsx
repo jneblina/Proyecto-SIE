@@ -1,8 +1,18 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import SieLayout from "@/components/SieLayout";
 import Loading from "@/components/Loading";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react";
+
+import { IconBriefcase2 } from "@tabler/icons-react";
 
 const ResidenciasPage = () => {
   const [residencia, setResidencia] = useState([]);
@@ -19,11 +29,11 @@ const ResidenciasPage = () => {
       })
       .then((data) => {
         setResidencia(data);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error en la solicitud:", error);
-        setLoading(true)
+        setLoading(true);
       });
   };
 
@@ -33,116 +43,64 @@ const ResidenciasPage = () => {
     }
   }, [session]);
 
+  const tableRows = [
+    { label: "ID de Residencias", value: residencia.idResidencias },
+    { label: "Estudiante", value: residencia.estudianteRes },
+    { label: "Fecha de Solicitud", value: residencia.fechaSolicitud },
+    { label: "Proyecto", value: residencia.proyecto },
+    { label: "Duración", value: residencia.duracion },
+    { label: "Empresa", value: residencia.empresa },
+    { label: "Asesor Externo", value: residencia.asesorExterno },
+    { label: "Asesor Interno", value: residencia.asesorInterno },
+    { label: "Revisor", value: residencia.revisor },
+    { label: "Dictamen", value: residencia.dictamen },
+    { label: "Calificacion", value: residencia.calificacion },
+  ];
+
   return (
     <SieLayout>
-      {
-        loading ? (
-          <Loading /> 
-        ): (<section className="mx-auto mt-4 xl:mt-8 max-w-7xl h-full overflow-auto">
-        <div className="bg-white shadow-md rounded p-6">
-          <h1 className="text-lg font-bold mb-4 text-center">Detalles de la Residencia</h1>
-          {residencia && (
-            <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-300">
-                <tbody>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>ID de Residencias:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.idResidencias}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Estudiante:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.estudianteRes}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Fecha de Solicitud:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.fechaSolicitud}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Proyecto:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.proyecto}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Duración:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.duracion}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Empresa:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.empresa}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Asesor Externo:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.asesorExterno}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Asesor Interno:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.asesorInterno}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Revisor:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.revisor}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Dictamen:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.dictamen}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border-r border-gray-300">
-                      <strong>Calificación:</strong>
-                    </td>
-                    <td className="p-3">
-                      {residencia.calificacion}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      {loading ? (
+        <Loading />
+      ) : (
+        <section className="mx-auto mt-4 xl:mt-8 max-w-7xl h-full overflow-auto">
+          <div className="bg-white shadow-md rounded p-4">
+            <div className="flex gap-2 flex-row mb-2 items-center justify-center text-lg">
+              <IconBriefcase2 /> <p>Residencias</p>
             </div>
-          )}
-          {!residencia && (
-            <p className="text-center mt-4">No se encontraron datos de residencia para este estudiante.</p>
-          )}
-        </div>
-      </section>)
-      }
+            {residencia && (
+              <div className="overflow-x-auto">
+                <Table
+                  isStriped
+                  radius="sm"
+                  shadow="none"
+                  aria-label="Detalles de la Residencia"
+                  className="w-full mt-2"
+                >
+                  <TableHeader>
+                    <TableColumn className="bg-tertiary text-white uppercase text-xs leading-normal xl:text-sm"></TableColumn>
+                    <TableColumn className="bg-tertiary text-white uppercase text-xs leading-normal xl:text-sm">
+                      Datos de la Residencia
+                    </TableColumn>
+                  </TableHeader>
+                  <TableBody>
+                    {tableRows.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{row.label}</TableCell>
+                        <TableCell>{row.value}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
+            {!residencia && (
+              <p className="text-center mt-4">
+                No se encontraron datos de residencia para este estudiante.
+              </p>
+            )}
+          </div>
+        </section>
+      )}
     </SieLayout>
   );
 };

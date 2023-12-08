@@ -23,7 +23,6 @@ import { useEffect, useState } from "react";
 import {
   IconMenu2,
   IconX,
-  IconUser,
   IconTable,
   IconCoin,
   IconFile,
