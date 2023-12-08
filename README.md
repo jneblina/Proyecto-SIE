@@ -1,10 +1,10 @@
 # Proyecto-SIE
 
-Roles en la empresa:
-Frontend: Corona Hugo 19760611 y Muro Alan 19760602
-Backend: Flores Adrián 19760555 y Rulfo Diego 19760621
-Base de datos: Neblina Jan 19760610 y Vázquez Antonio 19760723
-QA: Calderón Jorge 19760591, Rodríguez Aleida 19760549
+## Roles en la empresa:
+- Frontend: Corona Hugo 19760611 y Muro Alan 19760602
+- Backend: Flores Adrián 19760555 y Rulfo Diego 19760621
+- Base de datos: Neblina Jan 19760610 y Vázquez Antonio 19760723
+- QA: Calderón Jorge 19760591, Rodríguez Aleida 19760549
 
 Deploy en Railway: https://sie-production.up.railway.app/
 
