@@ -1,14 +1,20 @@
 # Proyecto-SIE
 
-Autores: Neblina Jan, Corona Hugo, Flores Adrian, Muro Alan, Vázquez Antonio, Rulfo Diego, Calderon Jorge, Rodriguez Aleida
+Roles en la empresa:
+Frontend: Corona Hugo 19760611 y Muro Alan 19760602
+Backend: Flores Adrián 19760555 y Rulfo Diego 19760621
+Base de datos: Neblina Jan 19760610 y Vázquez Antonio 19760723
+QA: Calderón Jorge 19760591, Rodríguez Aleida 19760549
 
 Deploy en Railway: https://sie-production.up.railway.app/
 
 ## Contenido
+- Instrucciones
+- Links
+- Objetivo
 - Metas
 - No-metas
-- Contexto
-- Overview
+- Background
 - Diseño detallado
   - Solucion 1
     - Frontend
@@ -17,7 +23,31 @@ Deploy en Railway: https://sie-production.up.railway.app/
     - Frontend
     - Backend
 - Consideraciones
-- Instrucciones
+
+## Instrucciones
+
+Estas son las instrucciones para ejecutar este proyecto:
+
+1. Clona el repositorio desde GitHub:
+
+> git clone https://github.com/jneblina/Proyecto-SIE
+
+2. Navega al directorio del proyecto:
+
+> cd sie-rework
+
+3. Instala las dependencias necesarias:
+
+> npm i
+
+4. Para agregar la base de datos, dirigete a la carpeta de Prueba-json, descarga el archivo sie.sql e importalo en tu proyecto.
+
+5. Inicia la aplicación
+
+> npm build
+> npm run dev --p 3001
+
+6. Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a http://10.4.8.58/3001 para usar la aplicación.
 
 ## Links
 - https://trello.com/b/wnWOtn5t/sie-20
@@ -26,7 +56,7 @@ Deploy en Railway: https://sie-production.up.railway.app/
 ## Objetivo
 El objetivo principal de este proyecto es desarrollar un sistema de control escolar integral que atienda las necesidades de profesores, administrativos y alumnos en un entorno educativo. Este sistema tiene como finalidad mejorar la eficiencia y la calidad de la gestión académica y administrativa en la institución educativa, facilitando el seguimiento y registro de información clave relacionada con el proceso educativo. 
 
-## Goals
+## Metas
 - Implementación de Módulos Académicos: Desarrollar módulos que permitan la gestión de calificaciones, asistencias, tareas y evaluaciones para profesores y alumnos.
 - Acceso Multiplataforma: Garantizar que el sistema sea accesible desde múltiples dispositivos y navegadores web para brindar flexibilidad a los usuarios.
 - Comunicación Eficiente: Facilitar la comunicación entre profesores, administrativos, alumnos y padres a través de mensajes, notificaciones y anuncios en tiempo real.
@@ -34,7 +64,7 @@ El objetivo principal de este proyecto es desarrollar un sistema de control esco
 - Información Transparente: Proporcionar a los usuarios acceso claro y actualizado a la información académica y administrativa relevante.
 - Reportes y Análisis: Desarrollar herramientas de generación de reportes y análisis de datos para ayudar a la administración en la toma de decisiones informadas.
 - Interfaz Intuitiva: Diseñar una interfaz de usuario fácil de usar que requiera una curva de aprendizaje mínima.
-## Non-Goals
+## No-metas
 - Desarrollo de Juegos Educativos: El proyecto no tiene como objetivo desarrollar juegos educativos o actividades extracurriculares.
 - Administración de Recursos Humanos: No se incluirán módulos para la gestión del personal docente y administrativo de la institución educativa.
 - Ventas de Servicios Educativos: El sistema no estará destinado a la gestión de ventas de servicios educativos o matrículas.
@@ -45,8 +75,6 @@ El objetivo principal de este proyecto es desarrollar un sistema de control esco
 
 ## Background
 El proyecto de sistema de control escolar surge en respuesta a la necesidad de modernizar y eficientizar la gestión académica y administrativa en las instituciones educativas. Tradicionalmente, la documentación de calificaciones, asistencias y comunicación se ha realizado manualmente, lo que puede resultar en errores y falta de transparencia. Con la tecnología en constante evolución y la creciente conectividad, este proyecto tiene como objetivo desarrollar un sistema versátil y seguro que automatice procesos, mejore la comunicación entre profesores, administrativos, alumnos y padres de familia, y brinde acceso rápido y fácil a la información relevante. La implementación de esta solución tiene el potencial de revolucionar la educación al fomentar un entorno más efectivo y conectado, centrado en el éxito del estudiante.
-
-## Overview
 
 ## Solución
 ### Frontend
@@ -59,6 +87,30 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 
 ### Kardex
 ![Kardex](https://i.imgur.com/MT9opCu.png)
+
+### Horario
+![Horario](https://i.imgur.com/0N8JY49.png)
+
+### Calificaciones
+![Calificaciones](https://i.imgur.com/iWasIEO.png)
+
+### Servicios
+![Servicios](https://i.imgur.com/mwHlTO9.png)
+
+### Evaluación Docente
+![EvaluacionDocente](https://i.imgur.com/G0tpbqB.png)
+
+### Adeudos
+![Adeudos](https://i.imgur.com/BtSaDuf.png)
+
+### Residencias
+![Residencias](https://i.imgur.com/oFi2mTd.png)
+
+### Documentos
+![Documentos](https://i.imgur.com/JTb8CdX.png)
+
+### Actividades Complementarias
+![ActividadesComplementarias](https://i.imgur.com/qHvaALr.png)
 
 ### Backend
 
