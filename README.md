@@ -45,7 +45,7 @@ Estas son las instrucciones para ejecutar este proyecto:
 5. Inicia la aplicación
 
 > npm build
-> npm run dev --p 3001
+> npm start --p 3001
 
 6. Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a http://10.4.8.58/3001 para usar la aplicación.
 
