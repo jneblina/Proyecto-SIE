@@ -40,14 +40,36 @@ Estas son las instrucciones para ejecutar este proyecto:
 
 > npm i
 
-4. Para agregar la base de datos, dirigete a la carpeta de Prueba-json, descarga el archivo sie.sql e importalo en tu proyecto.
+4. Para agregar la base de datos, dirigete a la carpeta de Prueba-json, descarga el archivo sie.sql e importalo en una conección de mysql.
 
-5. Inicia la aplicación
+5. Instala prisma en tu proyecto:
+
+> npm install prisma --save-dev
+
+6. Ahora inicia prisma para generar el archivo schema y el .env
+
+> npx prisma init
+
+7. En el archivo .env edita la siguiente linea con los datos de tu base de datos:
+
+> DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+
+-USER: El nombre del usuario con el que ingresas a mysql.
+-PASSWORD: La contraseña de tu conexión.
+-HOST: La ruta de tu conexión.
+-PORT: El puerto en el que corre tu base de datos (normalmente es el 3306).
+-DATABASE: El nombre de tu base de datos (el archivo de la base de datos que se importa se llama sie).
+
+8. Una vez teniendo estos datos, podemos obtener la información de nuestra base de datos con el siguiente comando, y se actualizará el archivo schema:
+
+> npx prisma db pull
+
+9. Inicia la aplicación
 
 > npm build
 > npm start --p 3001
 
-6. Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a http://10.4.8.58/3001 para usar la aplicación.
+10. Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a la ruta en la que corra tu proyecto junto con el puerto para usar la aplicación.
 
 ## Links
 - https://trello.com/b/wnWOtn5t/sie-20
