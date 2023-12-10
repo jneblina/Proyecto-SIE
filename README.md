@@ -43,7 +43,7 @@ Estas son las instrucciones para ejecutar este proyecto:
 
 4. Para agregar la base de datos, dirigete a la carpeta de Prueba-json, descarga el archivo sie.sql e importalo en una conección de mysql.
 
-5. Instala prisma en tu proyecto:
+5. Configuración de la Base de Datos con Prisma
 
 > npm install prisma --save-dev
 
@@ -51,7 +51,35 @@ Estas son las instrucciones para ejecutar este proyecto:
 
 > npx prisma init
 
+Ejecuta las migraciones de la base de datos:
+```bash
+npx prisma migrate dev
+```
+Genera los archivos Prisma:
+```bash
+npx prisma generate
+```
+
+Importar la copia de la base de datos de mysql.
+```bash
+MYSQL workbench - Data Import
+```
+
 7. En el archivo .env edita la siguiente linea con los datos de tu base de datos:
+
+Configura las variables de entorno con la información de tu base de datos:
+```bash
+NEXTAUTH_URL=url_main_del_proyecto 
+Ejemplo: NEXTAUTH_URL=http://localhost:3000
+```
+```bash
+NEXTAUTH_SECRET="frase_secreta"
+Ejemplo: NEXTAUTH_SECRET="asgghjhetsdfsndahgwlbpjtrkdsly7"
+```
+```bash
+DATABASE_URL=mysql://usuario:contraseña@localhost:3306/nombre_de_la_base_de_datos
+Ejemplo: DATABASE_URL="mysql://root:12345@localhost:3306/sie"
+```
 
 > DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
 
@@ -65,12 +93,21 @@ Estas son las instrucciones para ejecutar este proyecto:
 
 > npx prisma db pull
 
-9. Inicia la aplicación
-
-> npm build
-> npm start --p 3001
-
-10. Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a la ruta en la que corra tu proyecto junto con el puerto para usar la aplicación.
+### Uso 
+Para iniciar el proyecto en modo de desarrollo, ejecuta:
+```bash
+npm run dev 
+```
+### Uso en Producción
+Para construir el proyecto para producción, ejecuta:
+```bash
+npm run build
+```
+Luego, inicia el servidor en modo de producción:
+```bash
+npm start
+```
+Al estar conectado con el internet de la escuela (Wifi ITE 5.0) abre tu navegador web y accede a la ruta en la que corra tu proyecto junto con el puerto para usar la aplicación.
 
 ## Links
 - https://trello.com/b/wnWOtn5t/sie-20
@@ -139,62 +176,6 @@ El proyecto de sistema de control escolar surge en respuesta a la necesidad de m
 
 ### Diagrama entidad relación
 ![DiagramaER](https://i.imgur.com/otj55Ku.png)
-
-## Configuración del Proyecto
-1. Clona este repositorio:
-
-```bash
-git clone https://github.com/jneblina/Proyecto-SIE
-cd sie-rework
-```
-2. Instala las dependencias:
-```bash
-npm install
-```
-3. 
-Configura las variables de entorno con la información de tu base de datos:
-```bash
-NEXTAUTH_URL=url_main_del_proyecto 
-Ejemplo: NEXTAUTH_URL=http://localhost:3000
-```
-```bash
-NEXTAUTH_SECRET="frase_secreta"
-Ejemplo: NEXTAUTH_SECRET="asgghjhetsdfsndahgwlbpjtrkdsly7"
-```
-```bash
-DATABASE_URL=mysql://usuario:contraseña@localhost:3306/nombre_de_la_base_de_datos
-Ejemplo: DATABASE_URL="mysql://root:12345@localhost:3306/sie"
-```
-### Configuración de la Base de Datos con Prisma
-
-Ejecuta las migraciones de la base de datos:
-```bash
-npx prisma migrate dev
-```
-Genera los archivos Prisma:
-```bash
-npx prisma generate
-```
-
-Importar la copia de la base de datos de mysql.
-```bash
-MYSQL workbench - Data Import
-```
-
-### Uso 
-Para iniciar el proyecto en modo de desarrollo, ejecuta:
-```bash
-npm run dev 
-```
-### Uso en Producción
-Para construir el proyecto para producción, ejecuta:
-```bash
-npm run build
-```
-Luego, inicia el servidor en modo de producción:
-```bash
-npm start
-```
 
 ## Consideraciones
 - Requisitos de los Usuarios: Comprender las necesidades y expectativas de profesores, administrativos, alumnos y padres de familia es fundamental. Realiza encuestas o entrevistas para recopilar sus requisitos y asegúrate de que el sistema satisfaga sus necesidades.
