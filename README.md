@@ -54,11 +54,11 @@ Estas son las instrucciones para ejecutar este proyecto:
 
 > DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
 
--USER: El nombre del usuario con el que ingresas a mysql.
--PASSWORD: La contraseña de tu conexión.
--HOST: La ruta de tu conexión.
--PORT: El puerto en el que corre tu base de datos (normalmente es el 3306).
--DATABASE: El nombre de tu base de datos (el archivo de la base de datos que se importa se llama sie).
+- USER: El nombre del usuario con el que ingresas a mysql.
+- PASSWORD: La contraseña de tu conexión.
+- HOST: La ruta de tu conexión.
+- PORT: El puerto en el que corre tu base de datos (normalmente es el 3306).
+- DATABASE: El nombre de tu base de datos (el archivo de la base de datos que se importa se llama sie).
 
 8. Una vez teniendo estos datos, podemos obtener la información de nuestra base de datos con el siguiente comando, y se actualizará el archivo schema:
 
