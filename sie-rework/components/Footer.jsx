@@ -1,11 +1,13 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
-    <footer className="bg-[#052E16] w-auto h-[20%] p-4 text-white text-left">
+    <footer className="bg-[#052E16] w-screen p-4 text-white text-left mt-28 xl:mt-0">
       <div className="flex flex-col sm:flex-row items-start justify-around">
         <div className="mb-4 sm:mb-0">
-          <img src="/assets/gobierno.svg" alt="" className="w-32 sm:w-40" />
+          <img
+            src="/assets/gobierno.svg"
+            alt="Logo gobierno de México"
+            className="w-32 sm:w-40"
+          />
         </div>
         <div className="flex flex-col mb-4 sm:mb-0">
           <h1 className="font-bold">Enlaces</h1>
@@ -30,7 +32,6 @@ export default function Footer() {
           <a className="underline" href="https://twitter.com/GobiernoMX">
             Twitter
           </a>
-          <Link href={"/sie/error"}>Error</Link>
         </div>
       </div>
     </footer>

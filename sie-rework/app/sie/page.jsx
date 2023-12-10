@@ -1,42 +1,36 @@
 "use client";
-
-import Loading from "@/components/Loading";
 import SieLayout from "@/components/SieLayout";
 import { Image } from "@nextui-org/react";
-import { Spinner } from "@nextui-org/spinner";
-import { IconId } from "@tabler/icons-react";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { IconClock, IconId, IconSpeakerphone } from "@tabler/icons-react";
+import HorarioTable from "@/components/HorarioTable";
+import Loading from "@/components/Loading";
 
 export default function Sie() {
   const [estudiante, setEstudiante] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
 
-  const fetchData = (studentId) => {
-    fetch(`/api/estudiante/${studentId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("La solicitud no fue exitosa");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setIsLoading(false);
-        setEstudiante(data);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error en la solicitud:", error);
-      });
-  };
-
   useEffect(() => {
-    if (session) {
-      fetchData(session.user.name);
+    if (session?.user.name) {
+      fetch(`/api/estudiante/${session?.user.name}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("La solicitud no fue exitosa");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setEstudiante(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error en la solicitud:", error);
+          setLoading(true);
+        });
     }
-  }, [session]);
+  }, [session?.user.name]);
 
   const {
     nombre,
@@ -59,93 +53,145 @@ export default function Sie() {
 
   return (
     <SieLayout>
-      {isLoading ? (
+      {loading ? (
         <Loading />
       ) : (
-        <section className="mx-auto mt-8 max-w-7xl h-full ">
-          <div className="grid grid-rows-2 xl:grid-cols-4  gap-2 h-full">
-            <div className="xl:col-span-1 flex flex-col items-center justify-center xl:justify-start  space-y-6  xl:space-y-2 xl:space-x-6 w-full">
+        <section className="mx-auto mt-4 xl:mt-8 max-w-7xl h-full ">
+          <div className="items-center grid  xl:grid-cols-4  gap-2 xl:col-span-3  flex-row h-full overflow-auto shadow-md  mx-2 bg-white rounded-md">
+            <div className="hidden xl:block xl:col-span-1 flex-col space-y-6 xl:space-y-2 xl:space-x-6 xl:ml-8">
               <Image
-                width={300}
-                height={300}
-                className="rounded-full border-2 border-secondary"
+                className="rounded-full border-1  xl:w-full"
                 src="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
                 fallbackSrc="https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
                 alt="Foto de perfil"
               />
             </div>
 
-            <div className="xl:col-span-3 flex flex-col space-y-5 h-full overflow-auto shadow-md  ">
-              <div className="flex flex-col px-8 py-6 xl:py-8 w-full font-bold text-base rounded-md h-full bg-white   min-w-[877px]">
-                <div className="flex gap-2 flex-row mb-2 items-center text-lg">
+            <div className="xl:col-span-3 flex flex-col h-full overflow-auto">
+              <div className="flex flex-col px-4 py-6 xl:py-6 w-full text-base rounded-md h-full bg-white">
+                <div className="flex gap-2 flex-row mb-2 items-center">
                   <IconId /> <p>Datos generales</p>
                 </div>
-                <table className="w-full h-full text-left profile">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Nombre</td>
-                      <td className="font-normal">{nombre}</td>
-                      <td>Modalidad</td>
-                      <td className="font-normal">
+                <div className="text-gray-700">
+                  <div className="grid md:grid-cols-2 text-sm">
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Nombre</div>
+                      <div className="py-2">{nombre}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Modalidad</div>
+                      <div className="py-2">
                         {
                           modalidad_estudiante_modalidadTomodalidad?.nombreModalidad
                         }
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Fecha de nacimiento</td>
-                      <td className="font-normal">
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Fecha de nacimiento
+                      </div>
+                      <div className="py-2">
                         {birthdate.getDate().toString().padStart(2, "0")}-
                         {birthdate.getMonth().toString().padStart(2, "0")}-
                         {birthdate.getFullYear()}
-                      </td>
-                      <td>Situación</td>
-                      <td className="font-normal">{situacion}</td>
-                    </tr>
-                    <tr>
-                      <td>Periodo de ingreso</td>
-                      <td className="font-normal">{periodoIngreso}</td>
+                      </div>
+                    </div>
 
-                      <td>Periodo actual</td>
-                      <td className="font-normal">{periodoActual}</td>
-                    </tr>
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Situación</div>
+                      <div className="py-2">{situacion}</div>
+                    </div>
 
-                    <tr>
-                      <td>Correo institucional</td>
-                      <td className="font-normal">{correoInstitucional}</td>
-                      <td>Correo personal</td>
-                      <td className="font-normal">{correoPersonal}</td>
-                    </tr>
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Periodo de ingreso
+                      </div>
+                      <div className="py-2">{periodoIngreso}</div>
+                    </div>
 
-                    <tr>
-                      <td>Carrera</td>
-                      <td className="font-normal">{carreras?.nombre}</td>
-                      <td>Escuela de procedencia</td>
-                      <td className="font-normal">{escuelaProcedencia}</td>
-                    </tr>
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Periodo actual
+                      </div>
+                      <div className="py-2">{periodoActual}</div>
+                    </div>
 
-                    <tr>
-                      <td>CURP</td>
-                      <td className="font-normal">{curp}</td>
-                      <td>Telefono</td>
-                      <td className="font-normal">{telefono}</td>
-                    </tr>
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Correo institucional
+                      </div>
+                      <div className="py-2 text-xs xl:text-sm">
+                        {correoInstitucional}
+                      </div>
+                    </div>
 
-                    <tr>
-                      <td>Direccion</td>
-                      <td className="font-normal">{direccion}</td>
-                      <td>Ciudad</td>
-                      <td className="font-normal">{ciudad}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Correo personal
+                      </div>
+                      <div className=" py-2 text-xs xl:text-sm">
+                        {correoPersonal}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Carrera</div>
+                      <div className="py-2">{carreras?.nombre}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">
+                        Escuela de procedencia
+                      </div>
+                      <div className="py-2">{escuelaProcedencia}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">CURP</div>
+                      <div className="py-2">{curp}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Telefono</div>
+                      <div className="py-2">{telefono}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Direccion</div>
+                      <div className="py-2">{direccion}</div>
+                    </div>
+
+                    <div className="grid grid-cols-2">
+                      <div className="px-4 py-2 font-semibold">Ciudad</div>
+                      <div className="py-2">{ciudad}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="my-4 px-2 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 h-full w-full">
+            <div className="shadow-md rounded-md bg-white p-4 ">
+              <div className="">
+                <div className="flex gap-2 flex-row mb-2 items-center text-base">
+                  <IconSpeakerphone /> <p>Avisos</p>
+                </div>
+                <p className="text-gray-600">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  quam velit...
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="my-4 px-2 items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 h-full w-full">
+            <div className="shadow-md rounded-md bg-white p-4">
+              <div className="flex gap-2 flex-row mb-2 items-center text-base ">
+                <IconClock /> <p>Horario</p>
+              </div>
+              <HorarioTable />
             </div>
           </div>
         </section>

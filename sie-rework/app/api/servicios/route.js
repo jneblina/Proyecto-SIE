@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   try {
     const servicios = await prisma.servicios.findMany({});
@@ -15,3 +17,4 @@ export async function GET(request) {
       return NextResponse.json(error.message, { status: 500 });
   }
 }
+

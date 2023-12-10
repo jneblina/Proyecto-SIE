@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .form-input{
-    @apply rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0
+  @apply rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0
 }
 
 span {
@@ -14,17 +14,6 @@ table.profile td {
     @apply py-2 px-1 text-sm
 }
 
-table.kardex {
-  @apply w-full min-w-[1600px] overflow-auto
-}
-
-table.kardex thead th {
-  @apply text-white font-medium p-2 border-x-1
-}
-
-table.kardex tr td {
-  @apply border border-gray-500/60 text-center
-}
 
 .burger {
     position: relative;

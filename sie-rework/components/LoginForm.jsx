@@ -1,7 +1,8 @@
 "use client";
 
 import { IconExclamationCircle, IconX } from "@tabler/icons-react";
-import { signIn, useSession } from "next-auth/react";
+import { Spinner } from "@nextui-org/spinner";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -13,6 +14,7 @@ export default function LoginForm() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //Usuario de prueba
   //email: pruebatest@gmail.com
@@ -20,13 +22,13 @@ export default function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const res = await signIn("credentials", {
       id,
       password,
       redirect: false,
     });
-
+    setLoading(false);
     if (res.error) {
       setErrorMessage(true);
       setTimeout(() => {
@@ -38,7 +40,7 @@ export default function LoginForm() {
   };
 
   return (
-    <section className="flex flex-col space-y-4 bg-white shadow-md w-full min-[520px]:w-[90%] h-fit px-4 min-[520px]:px-8 py-8 md:p-12 rounded-lg max-w-2xl">
+    <section className="flex flex-col space-y-4 bg-white shadow-md w-full min-[520px]:w-[90%] h-fit px-4 min-[520px]:px-8 py-8 md:p-12 rounded-lg max-w-2xl mt-28 xl:mt-0">
       <h2 className="font-bold text-3xl min-[520px]:text-4xl text-center my-2">
         Iniciar sesión
       </h2>
@@ -68,34 +70,47 @@ export default function LoginForm() {
           >
             Número de control
           </label>
+
           <input
             required={true}
             type="text"
             id="email"
+            maxLength={10}
             className="form-input"
             value={id}
-            onChange={(e) => setId(e.target.value)}
+            onChange={(e) => {
+              const filteredValue = e.target.value.replace(/[^0-9]/g, "");
+              setId(filteredValue);
+            }}
           ></input>
+
           <label
             htmlFor="password"
             className="block text-gray-600 cursor-text text-sm leading-[140%] font-normal mb-2"
           >
             Clave de acceso
           </label>
+
           <input
             required={true}
             type="password"
             id="password"
+            maxLength={10}
             className="form-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
+
         <button
           type="submit"
-          className="bg-[#8D0D30] w-full mx-auto px-6 py-2 rounded text-white text-sm font-semibold"
+          className="bg-[#8D0D30] w-full mx-auto px-6 py-2 rounded text-white text-sm font-semibold flex items-center justify-center"
         >
-          Ingresar
+          {loading ? (
+            <Spinner color="white" size="sm" className="mr-2" />
+          ) : (
+            "Ingresar"
+          )}
         </button>
       </form>
 

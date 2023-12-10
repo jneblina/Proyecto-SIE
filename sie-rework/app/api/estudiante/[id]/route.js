@@ -18,13 +18,11 @@ export async function GET(request, { params: { id } }) {
         },
       },
     });
-
     if (!estudiante)
       return NextResponse.json(
         { message: "Estudiante no encontrado" },
         { status: 404 }
       );
-
     return NextResponse.json(estudiante);
   } catch (error) {
     if (error instanceof Error)
@@ -82,10 +80,7 @@ export async function PUT(request, { params: { id } }) {
     });
 
     if (estudiante == null) {
-      return NextResponse.json(
-        { message: `El alumno ${id} no existe` },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: `El alumno ${id} no existe` });
     }
   } catch (error) {
     if (error instanceof Error)

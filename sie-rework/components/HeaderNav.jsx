@@ -21,43 +21,23 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-  IconMenu,
   IconMenu2,
   IconX,
-  IconUser,
   IconTable,
   IconCoin,
   IconFile,
-  IconUsersGroup,
   IconBriefcase2,
   IconCash,
   IconFilePlus,
   IconHome,
   IconCalendar,
   IconFileCheck,
-  IconDeviceIpadQuestion,
-  IconClipboard,
   IconCheckupList,
 } from "@tabler/icons-react";
 import Link from "next/link";
 
 const userRoutes = [
-  {
-    route: "/sie/datos-generales",
-    name: "Perfil",
-    icon: IconUser,
-  },
-
-  {
-    route: "/sie/kardex",
-    name: "Kardex",
-    icon: IconTable,
-  },
-  {
-    route: "/sie/grupos-actuales",
-    name: "Grupos Actuales",
-    icon: IconUsersGroup,
-  },
+  
   {
     route: "/sie/adeudos",
     name: "Adeudos",
@@ -90,6 +70,12 @@ const routes = [
   },
 
   {
+    route: "/sie/kardex",
+    name: "Kardex",
+    icon: IconTable,
+  },
+
+  {
     route: "/sie/horario",
     name: "Horario",
     icon: IconCalendar,
@@ -98,17 +84,6 @@ const routes = [
     route: "/sie/calificaciones",
     name: "Calificaciones",
     icon: IconFileCheck,
-  },
-  {
-    route: "/sie/encuesta-de-carga",
-    name: "Encuesta de Carga",
-    icon: IconDeviceIpadQuestion,
-  },
-
-  {
-    route: "/sie/reinscripciones",
-    name: "Reinscripciones",
-    icon: IconClipboard,
   },
 
   {
@@ -179,10 +154,12 @@ const HeaderNav = () => {
                 as={"button"}
                 className="transition-transform"
                 color="secondary"
-                name="Albatro Jose"
+                name={session?.user.email.fullName}
                 size="sm"
               />
-              <p className="font-bold text-white ml-1 ">Usuario</p>
+              <p className="font-bold text-white ml-1 ">
+                {session?.user.email.fullName}
+              </p>
             </div>
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -191,12 +168,10 @@ const HeaderNav = () => {
               textValue="user-info"
               className="h-14 gap-2"
             >
-              <p className="font-semibold">Bienvenido albatro!</p>
-              <p className="font-semibold">{session?.user.email}</p>
+              <p className="font-semibold">Iniciaste sesión como:</p>
+              <p className="font-semibold">{session?.user.email.email}</p>
             </DropdownItem>
-            <DropdownItem key="profile" textValue="logout" color="default">
-              <Link href="/sie/datos-generales">Perfil</Link>
-            </DropdownItem>
+           
 
             <DropdownItem
               onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
